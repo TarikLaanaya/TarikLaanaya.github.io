@@ -12,20 +12,16 @@
       box-sizing: border-box;
       scroll-behavior: smooth;
     }
+
+    html {
+      scroll-padding-top: 90px;
+    }
+
     body {
       margin: 0;
       font-family: 'Roboto', sans-serif;
-      background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364, #1a1a1a);
-      background-size: 300% 300%;
-      animation: gradientBG 10s ease infinite;
+      background: #0d0d0d;
       color: #eee;
-      min-height: 100vh;
-      position: relative;
-    }
-    @keyframes gradientBG {
-      0% {background-position: 0% 50%;}
-      50% {background-position: 100% 50%;}
-      100% {background-position: 0% 50%;}
     }
 
     #tsparticles {
@@ -38,59 +34,86 @@
     }
 
     header {
-      background-color: rgba(20, 20, 20, 0.85);
-      padding: 1rem 2rem;
-      text-align: center;
       position: sticky;
       top: 0;
       z-index: 10;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.8);
+      background-color: rgba(10, 10, 10, 0.95);
+      padding: 1rem 2rem;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.6);
     }
+
     header h1 {
       margin: 0;
       font-family: 'Poppins', sans-serif;
-      font-size: 2.5rem;
-      color: #66ccff;
+      font-size: 2.3rem;
+      color: #ffffff;
     }
 
     nav {
-      margin-top: 0.5rem;
+      margin-top: 0.3rem;
     }
+
     nav a {
       color: #bbb;
       margin: 0 1rem;
       text-decoration: none;
-      font-weight: 600;
+      font-weight: bold;
       position: relative;
-      transition: all 0.3s ease;
     }
-    nav a::after {
-      content: '';
-      position: absolute;
-      height: 2px;
-      width: 0;
-      background-color: #66ccff;
-      left: 0;
-      bottom: -5px;
-      transition: width 0.3s ease;
-    }
+
     nav a:hover {
-      color: #66ccff;
+      color: #fff;
     }
-    nav a:hover::after {
-      width: 100%;
+
+    .hero {
+      height: 300px;
+      background: repeating-linear-gradient(
+        -45deg,
+        #111 0px,
+        #111 20px,
+        #222 20px,
+        #222 40px
+      );
+      animation: scrollBG 20s linear infinite;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    @keyframes scrollBG {
+      0% { background-position: 0 0; }
+      100% { background-position: 400px 400px; }
+    }
+
+    .hero h2 {
+      font-size: 2.5rem;
+      color: #ffffff;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: #ccc;
     }
 
     main {
-      position: relative;
-      z-index: 1;
       padding: 3rem 2rem;
       max-width: 1000px;
       margin: auto;
+      position: relative;
+      z-index: 1;
     }
+
     section {
-      margin-bottom: 3rem;
+      margin-bottom: 4rem;
     }
+
     section h2 {
       font-family: 'Poppins', sans-serif;
       font-size: 2rem;
@@ -98,57 +121,68 @@
       margin-bottom: 1rem;
     }
 
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .skills span {
+      background: #222;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-weight: 500;
+      color: #ccc;
+    }
+
     .project {
       display: flex;
-      background-color: rgba(30, 30, 30, 0.8);
+      background-color: #1a1a1a;
       border-radius: 10px;
       overflow: hidden;
       margin-bottom: 2rem;
       box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-      transition: transform 0.3s ease;
     }
-    .project:hover {
-      transform: scale(1.02);
-    }
+
     .project img {
       width: 200px;
       object-fit: cover;
     }
+
     .project-content {
-      padding: 1rem 1.5rem;
+      padding: 1rem;
     }
+
     .project h3 {
       margin-top: 0;
       color: #a0d8ff;
     }
-    .project p {
-      margin: 0.5rem 0 0;
-      color: #ccc;
-    }
 
     form {
-      background-color: rgba(30,30,30,0.85);
+      background-color: #1a1a1a;
       padding: 1.5rem;
       border-radius: 10px;
       max-width: 600px;
       margin: auto;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
     }
+
     form label {
       display: block;
       margin-bottom: 0.3rem;
       font-weight: bold;
       color: #66ccff;
     }
+
     form input, form textarea {
       width: 100%;
       padding: 0.7rem;
       margin-bottom: 1rem;
-      background: #222;
+      background: #111;
       border: none;
       border-radius: 5px;
       color: #eee;
     }
+
     form button {
       background-color: #66ccff;
       border: none;
@@ -157,35 +191,40 @@
       font-weight: bold;
       border-radius: 6px;
       cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-    form button:hover {
-      background-color: #55bbee;
     }
 
     .socials {
       text-align: center;
       margin-top: 2rem;
     }
+
     .socials a {
       color: #bbb;
       font-size: 1.8rem;
       margin: 0 0.8rem;
-      transition: color 0.3s ease, transform 0.3s ease;
-    }
-    .socials a:hover {
-      color: #66ccff;
-      transform: scale(1.2);
     }
 
     footer {
-      background-color: rgba(30, 30, 30, 0.9);
+      background-color: #111;
       text-align: center;
-      padding: 1.5rem;
+      padding: 2rem 1rem;
       font-size: 0.9rem;
       color: #666;
-      z-index: 10;
-      position: relative;
+    }
+
+    .testimonials {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .testimonial {
+      background: #191919;
+      padding: 1rem 1.5rem;
+      border-radius: 8px;
+      border-left: 4px solid #66ccff;
+      font-style: italic;
+      color: #ccc;
     }
   </style>
 </head>
@@ -193,42 +232,69 @@
   <div id="tsparticles"></div>
 
   <header>
-    <h1>Tarik Laanaya - Game Design Portfolio</h1>
+    <h1>Tarik Laanaya</h1>
     <nav>
       <a href="#about">About</a>
+      <a href="#skills">Skills</a>
       <a href="#projects">Projects</a>
+      <a href="#philosophy">Philosophy</a>
       <a href="#contact">Contact</a>
     </nav>
   </header>
 
+  <section class="hero">
+    <h2>Game Design Portfolio</h2>
+    <p>Exploring play, crafting experiences, building worlds.</p>
+  </section>
+
   <main>
     <section id="about">
       <h2>About Me</h2>
-      <p>Hi, I'm Tarik, a game designer passionate about crafting interactive experiences. Welcome to my portfolio!</p>
+      <p>Hey, I’m Tarik — a designer who loves building engaging game systems, telling stories through interaction, and pushing creative boundaries. Welcome to my corner of the web!</p>
+    </section>
+
+    <section id="skills">
+      <h2>Skills</h2>
+      <div class="skills">
+        <span>Unity</span>
+        <span>Godot</span>
+        <span>Unreal Engine</span>
+        <span>Level Design</span>
+        <span>Game Scripting</span>
+        <span>Pixel Art</span>
+        <span>Audio Integration (FMOD)</span>
+        <span>UX Design</span>
+      </div>
     </section>
 
     <section id="projects">
       <h2>Projects</h2>
       <div class="project">
-        <img src="https://placehold.co/200x150?text=Project+1" alt="Project 1 image" />
+        <img src="https://placehold.co/200x150?text=Rhythm+Quest" alt="Rhythm Quest" />
         <div class="project-content">
           <h3>Rhythm Quest</h3>
-          <p>A rhythm-based game where players sync movement and strategy to the beat. Tools: Unity, FMOD.</p>
+          <p>A beat-based action game blending platforming with music timing mechanics. Built in Unity with dynamic audio via FMOD.</p>
         </div>
       </div>
       <div class="project">
-        <img src="https://placehold.co/200x150?text=Project+2" alt="Project 2 image" />
+        <img src="https://placehold.co/200x150?text=Pixel+Runner" alt="Pixel Runner" />
         <div class="project-content">
           <h3>Pixel Runner</h3>
-          <p>Endless pixel-style runner game with dynamic obstacles and procedural generation. Tools: Godot, Aseprite.</p>
+          <p>A pixel art endless runner using procedural generation. Features mobile optimization and responsive controls.</p>
         </div>
       </div>
-      <div class="project">
-        <img src="https://placehold.co/200x150?text=Project+3" alt="Project 3 image" />
-        <div class="project-content">
-          <h3>Escape Protocol</h3>
-          <p>3D stealth game built in Unreal Engine. Designed core AI and level pacing.</p>
-        </div>
+    </section>
+
+    <section id="philosophy">
+      <h2>Design Philosophy</h2>
+      <p>I believe games are emotional engines. I strive to design systems that empower creativity, narrative, and flow — always with the player experience at the center. Whether it’s through tight mechanics or expressive art, every detail matters.</p>
+    </section>
+
+    <section>
+      <h2>Testimonials</h2>
+      <div class="testimonials">
+        <div class="testimonial">"Tarik's attention to gameplay feel and user experience is incredible. Working with him leveled up our project massively." – Alex R.</div>
+        <div class="testimonial">"Creative, reliable, and always focused on the player's journey. Tarik brings design clarity to every build." – Jamie T.</div>
       </div>
     </section>
 
@@ -248,9 +314,9 @@
       </form>
 
       <div class="socials">
-        <a href="https://twitter.com/TarikLaanaya" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-        <a href="https://linkedin.com/in/TarikLaanaya" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-        <a href="https://github.com/TarikLaanaya" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://twitter.com/TarikLaanaya" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="https://linkedin.com/in/TarikLaanaya" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://github.com/TarikLaanaya" target="_blank"><i class="fab fa-github"></i></a>
       </div>
     </section>
   </main>
@@ -264,15 +330,15 @@
       fullScreen: false,
       background: { color: "transparent" },
       particles: {
-        number: { value: 60 },
-        color: { value: "#66ccff" },
+        number: { value: 80 },
+        color: { value: "#ffffff" },
         size: { value: 2 },
-        move: { enable: true, speed: 0.5 },
-        opacity: { value: 0.4 },
+        move: { enable: true, speed: 0.4 },
+        opacity: { value: 0.5 },
         links: {
           enable: true,
-          color: "#66ccff",
-          opacity: 0.2,
+          color: "#aaa",
+          opacity: 0.15,
           distance: 100,
         }
       },
@@ -281,7 +347,7 @@
           onHover: { enable: true, mode: "repulse" }
         },
         modes: {
-          repulse: { distance: 100 }
+          repulse: { distance: 80 }
         }
       }
     });
