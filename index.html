@@ -44,7 +44,6 @@
       font-size: 2.5rem;
       letter-spacing: 1.5px;
       color: #66ccff;
-      text-shadow: 0 0 10px #66ccff99;
     }
     nav {
       margin-top: 0.5rem;
@@ -90,7 +89,6 @@
       font-size: 2rem;
       margin-bottom: 1rem;
       color: #66ccff;
-      text-shadow: 0 0 8px #66ccff99;
     }
 
     .project {
@@ -114,6 +112,74 @@
       margin-top: 0.5rem;
       color: #ccc;
       line-height: 1.4;
+    }
+
+    /* Contact Form */
+    form {
+      background-color: rgba(30,30,30,0.85);
+      padding: 1.8rem 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+      max-width: 600px;
+      margin: auto;
+    }
+    form label {
+      display: block;
+      margin-bottom: 0.3rem;
+      font-weight: 600;
+      color: #66ccff;
+    }
+    form input[type="text"],
+    form input[type="email"],
+    form textarea {
+      width: 100%;
+      padding: 0.6rem;
+      margin-bottom: 1rem;
+      border: none;
+      border-radius: 6px;
+      background-color: #222;
+      color: #eee;
+      font-size: 1rem;
+      font-family: inherit;
+      resize: vertical;
+      transition: background-color 0.3s ease;
+    }
+    form input[type="text"]:focus,
+    form input[type="email"]:focus,
+    form textarea:focus {
+      background-color: #333;
+      outline: none;
+    }
+    form button {
+      background-color: #66ccff;
+      color: #121212;
+      font-weight: 700;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1.1rem;
+      transition: background-color 0.3s ease;
+    }
+    form button:hover {
+      background-color: #55bbee;
+    }
+
+    /* Social media icons */
+    .socials {
+      text-align: center;
+      margin-top: 1rem;
+    }
+    .socials a {
+      display: inline-block;
+      margin: 0 0.7rem;
+      color: #bbb;
+      font-size: 1.8rem;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+    .socials a:hover {
+      color: #66ccff;
+      transform: scale(1.2);
     }
 
     footer {
@@ -148,6 +214,8 @@
       pointer-events: auto;
     }
   </style>
+  <!-- Font Awesome CDN for social icons -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -177,7 +245,30 @@
 
     <section id="contact">
       <h2>Contact</h2>
-      <p>Email me at <a href="mailto:your.email@example.com" style="color:#66ccff;">your.email@example.com</a></p>
+      <form id="contactForm" action="https://formspree.io/f/mqkvqvoq" method="POST">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" placeholder="Your full name" required />
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="_replyto" placeholder="your.email@example.com" required />
+
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="5" placeholder="Write your message here..." required></textarea>
+
+        <button type="submit">Send Message</button>
+      </form>
+      <div class="socials" aria-label="Social media links">
+        <a href="https://twitter.com/TarikLaanaya" target="_blank" rel="noopener" aria-label="Twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="https://linkedin.com/in/TarikLaanaya" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+        <a href="https://github.com/TarikLaanaya" target="_blank" rel="noopener" aria-label="GitHub">
+          <i class="fab fa-github"></i>
+        </a>
+        <!-- Add more social links here -->
+      </div>
     </section>
   </main>
 
@@ -200,6 +291,8 @@
     scrollTopBtn.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
+
+    // Optional: You can add form validation or other interactivity here
   </script>
 
 </body>
