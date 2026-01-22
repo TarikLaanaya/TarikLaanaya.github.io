@@ -2,313 +2,467 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Tarik Laanaya – Game Design Portfolio</title>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@600&display=swap" rel="stylesheet">
 
 <style>
-:root {
-  --bg: #0f1115;
-  --card: #181b22;
-  --text: #e6e6e6;
-  --muted: #9aa0aa;
-  --accent: #4da6ff;
-}
-
-* { box-sizing: border-box; margin: 0; padding: 0; }
+/* ================= GENERAL ================= */
+* { box-sizing: border-box; }
 body {
-  font-family: system-ui, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.6;
+  margin: 0;
+  font-family: Roboto, sans-serif;
+  background: #0d0d0d;
+  color: #eee;
 }
+section[id] { scroll-margin-top: 130px; }
 
-section { padding: 4rem 6vw; }
-h2 { font-size: 2rem; margin-bottom: 1.5rem; }
+/* ================= HEADER ================= */
+header {
+  position: sticky;
+  top: 0;
+  background: rgba(10,10,10,0.95);
+  padding: 1rem 2rem;
+  text-align: center;
+  z-index: 10;
+}
+header h1 {
+  margin: 0.5rem 0;
+  font-family: Poppins, sans-serif;
+}
+nav a {
+  color: #66ccff;
+  margin: 0 1rem;
+  text-decoration: none;
+  font-weight: bold;
+}
+nav a:hover { color: #94dbff; }
 
-/* HERO */
+/* ================= HERO VIDEO ================= */
 .video-hero {
   position: relative;
-  height: 75vh;
+  height: 520px;
   overflow: hidden;
+  border-bottom: 4px solid #66ccff;
 }
 .video-hero video {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-.video-hero .overlay {
+.hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, rgba(0,0,0,.3), var(--bg));
+  background: rgba(0,0,0,0.6);
   display: flex;
+  justify-content: center;
   align-items: center;
-  padding: 6vw;
 }
-.video-hero h1 {
-  font-size: clamp(2.5rem, 5vw, 4rem);
+.hero-overlay h2 {
+  font-size: 3rem;
+  color: #66ccff;
+  text-align: center;
 }
 
-/* REVEAL */
+/* ================= MAIN ================= */
+main {
+  max-width: 1100px;
+  margin: auto;
+  padding: 3rem 2rem;
+}
+section h2 {
+  font-family: Poppins, sans-serif;
+  font-size: 2rem;
+  color: #66ccff;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+/* ================= REVEAL ================= */
 .reveal {
   opacity: 0;
   transform: translateY(40px);
-  transition: all .8s ease;
+  transition: all 0.8s ease;
 }
 
-/* PROJECT SLIDER */
-.project-wrapper {
+/* ================= SHOWREEL ================= */
+.video-wrapper {
+  position: relative;
+  padding-top: 56.25%;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.video-wrapper iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* ================= PROJECT SLIDER ================= */
+.projects-container {
   position: relative;
 }
-.project-slider {
+.projects-grid {
   display: flex;
-  gap: 1.5rem;
+  gap: 2rem;
   overflow-x: auto;
   scroll-behavior: smooth;
+  padding-bottom: 1rem;
 }
-.project-slider::-webkit-scrollbar { display: none; }
+.projects-grid::-webkit-scrollbar {
+  height: 10px;
+}
+.projects-grid::-webkit-scrollbar-thumb {
+  background: #66ccff66;
+  border-radius: 10px;
+}
 
 .project-card {
-  min-width: 320px;
-  background: var(--card);
-  border-radius: 16px;
+  flex: 0 0 300px;
+  background: #111;
+  border-radius: 14px;
+  overflow: hidden;
   cursor: pointer;
-  transition: transform .3s;
+  transition: transform 0.3s ease;
 }
-.project-card:hover { transform: translateY(-6px); }
-
+.project-card:hover {
+  transform: translateY(-6px);
+}
 .project-card img {
   width: 100%;
-  height: 220px;
+  height: 260px;
   object-fit: cover;
-  border-radius: 16px 16px 0 0;
 }
-.project-card .content {
-  padding: 1rem;
+.project-content {
+  padding: 1.2rem;
+}
+.project-meta {
+  font-size: 0.9rem;
+  color: #aaa;
+  margin-bottom: 0.5rem;
 }
 
-.arrow {
+/* ================= SLIDER ARROWS ================= */
+.slider-arrow {
   position: absolute;
-  top: 45%;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(102,204,255,0.85);
+  color: #0d0d0d;
+  border: none;
   width: 52px;
   height: 52px;
   border-radius: 50%;
-  background: rgba(0,0,0,.6);
-  border: none;
-  color: white;
-  font-size: 1.3rem;
   cursor: pointer;
+  font-size: 1.8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 5;
 }
-.arrow.left { left: -70px; }
-.arrow.right { right: -70px; }
+.slider-arrow.left { left: -80px; }
+.slider-arrow.right { right: -80px; }
 
-/* PROJECT DETAILS (FIXED FLOW) */
+/* ================= PROJECT DETAILS ================= */
 .project-details {
-  display: grid;
-  grid-template-rows: 0fr;
-  opacity: 0;
-  transition: grid-template-rows .5s ease, opacity .4s ease;
-  margin-top: 2rem;
-}
-.project-details > div {
+  max-height: 0;
   overflow: hidden;
-  background: var(--card);
-  border-radius: 18px;
-  padding: 2rem;
+  opacity: 0;
+  background: #111;
+  border-radius: 16px;
+  margin-top: 1.5rem;
+  padding: 0 1.5rem;
+  transition: all 0.5s ease;
 }
 .project-details.open {
-  grid-template-rows: 1fr;
+  max-height: 900px;
   opacity: 1;
+  padding: 2rem 1.5rem;
 }
 .project-details img {
   width: 100%;
-  max-height: 380px;
+  max-height: 360px;
   object-fit: cover;
   border-radius: 12px;
-  margin-bottom: 1rem;
+  margin-bottom: 1.2rem;
 }
 
-/* ABOUT */
-.about {
-  display: grid;
-  grid-template-columns: 180px 1fr;
+/* ================= ABOUT ================= */
+.about-container {
+  display: flex;
   gap: 2rem;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
 }
-.about img {
-  width: 180px;
-  height: 180px;
-  border-radius: 50%;
+.about-photo {
+  width: 220px;
+  height: 220px;
   object-fit: cover;
-}
-
-/* SHOWREEL */
-iframe {
-  width: 100%;
-  aspect-ratio: 16/9;
   border-radius: 16px;
-  border: none;
+  border: 2px solid #66ccff;
 }
 
-/* CONTACT */
-form {
-  max-width: 520px;
+/* ================= CONTACT ================= */
+#contact { text-align: center; }
+.contact-card {
+  max-width: 560px;
+  margin: auto;
+  padding: 2.5rem;
+  background: linear-gradient(180deg, #111, #0b0b0b);
+  border-radius: 16px;
 }
-input, textarea {
-  width: 100%;
-  padding: .8rem;
-  margin-bottom: 1rem;
+#contact form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+#contact label {
+  text-align: left;
+  font-weight: bold;
+  color: #66ccff;
+}
+#contact input,
+#contact textarea {
+  margin-top: 0.4rem;
+  padding: 0.8rem;
   border-radius: 8px;
   border: none;
+  background: #1a1a1a;
+  color: #eee;
 }
-button {
-  background: var(--accent);
-  color: black;
+#contact button {
+  margin-top: 1rem;
+  padding: 0.9rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  background: #66ccff;
+  color: #0d0d0d;
   border: none;
-  padding: .8rem 1.2rem;
   border-radius: 8px;
   cursor: pointer;
 }
 
-/* SOCIAL ICONS */
-.socials {
+.contact-links {
   margin-top: 2rem;
   display: flex;
-  gap: 1.5rem;
+  justify-content: center;
+  gap: 2rem;
 }
-.socials a {
-  font-size: 1.8rem;
-  color: var(--text);
+.contact-links img {
+  width: 36px;
+  height: 36px;
 }
 
-/* MOBILE */
+/* ================= FOOTER ================= */
+footer {
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+}
+
+/* ================= MOBILE ================= */
 @media (max-width: 768px) {
-  .arrow { display: none; }
-  .about { grid-template-columns: 1fr; text-align: center; }
-  .about img { margin: auto; }
+  .video-hero { height: 360px; }
+  .hero-overlay h2 { font-size: 2rem; }
+  .projects-grid {
+    scroll-snap-type: x mandatory;
+  }
+  .project-card {
+    flex: 0 0 80%;
+    scroll-snap-align: start;
+  }
+  .slider-arrow { display: none; }
 }
 </style>
 </head>
 
 <body>
 
-<!-- HERO -->
+<header>
+  <h1>Tarik Laanaya</h1>
+  <nav>
+    <a href="#showreel">Showreel</a>
+    <a href="#projects">Projects</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
 <section class="video-hero">
   <video autoplay muted loop playsinline>
     <source src="IcarusRisingGameplay.mp4" type="video/mp4">
   </video>
-  <div class="overlay">
-    <h1>Tarik Laanaya<br><span style="color:var(--accent)">Game Designer</span></h1>
+  <div class="hero-overlay">
+    <h2>Game Design Portfolio</h2>
   </div>
 </section>
 
-<!-- PROJECTS -->
-<section class="reveal">
-<h2>Projects</h2>
+<main>
 
-<div class="project-wrapper">
-<button class="arrow left" onclick="slide(-1)">❮</button>
-<button class="arrow right" onclick="slide(1)">❯</button>
+<section id="showreel" class="reveal">
+  <h2>Showreel</h2>
+  <div class="video-wrapper">
+    <iframe src="https://www.youtube.com/embed/fEtlPdAvisw" allowfullscreen></iframe>
+  </div>
+</section>
 
-<div class="project-slider" id="slider">
-  <!-- 6 PROJECTS -->
-  <div class="project-card" data-title="FPS Prototype" data-img="p1.jpg" data-details="Fast-paced FPS with modular weapon system.">
-    <img src="p1.jpg"><div class="content"><h3>FPS Prototype</h3></div>
-  </div>
-  <div class="project-card" data-title="Puzzle Platformer" data-img="p2.jpg" data-details="Physics-driven puzzle platformer.">
-    <img src="p2.jpg"><div class="content"><h3>Puzzle Platformer</h3></div>
-  </div>
-  <div class="project-card" data-title="Stealth AI Demo" data-img="p3.jpg" data-details="Enemy perception & behavior trees.">
-    <img src="p3.jpg"><div class="content"><h3>Stealth AI</h3></div>
-  </div>
-  <div class="project-card" data-title="Narrative Game" data-img="p4.jpg" data-details="Branching dialogue & player choice.">
-    <img src="p4.jpg"><div class="content"><h3>Narrative Game</h3></div>
-  </div>
-  <div class="project-card" data-title="Multiplayer Test" data-img="p5.jpg" data-details="Client-server gameplay prototype.">
-    <img src="p5.jpg"><div class="content"><h3>Multiplayer Test</h3></div>
-  </div>
-  <div class="project-card" data-title="VR Interaction" data-img="p6.jpg" data-details="VR locomotion & interaction design.">
-    <img src="p6.jpg"><div class="content"><h3>VR Interaction</h3></div>
-  </div>
-</div>
-</div>
+<section id="projects" class="reveal">
+  <h2>Selected Projects</h2>
 
-<div class="project-details" id="project-details">
-  <div>
+  <div class="projects-container">
+    <button class="slider-arrow left">&#10094;</button>
+    <div class="projects-grid">
+
+      <!-- 6 PROJECTS -->
+      <div class="project-card" data-title="Forest Quest" data-details="Narrative exploration game focused on environmental storytelling." data-img="https://picsum.photos/600/400?1">
+        <img src="https://picsum.photos/600/400?1">
+        <div class="project-content">
+          <h3>Forest Quest</h3>
+          <div class="project-meta">Game Designer • Unity</div>
+        </div>
+      </div>
+
+      <div class="project-card" data-title="Skyborne" data-details="Aerial traversal and world design project." data-img="https://picsum.photos/600/400?2">
+        <img src="https://picsum.photos/600/400?2">
+        <div class="project-content">
+          <h3>Skyborne</h3>
+          <div class="project-meta">Level Designer</div>
+        </div>
+      </div>
+
+      <div class="project-card" data-title="Icarus Rising" data-details="Fast-paced action prototype exploring momentum-based combat." data-img="https://picsum.photos/600/400?3">
+        <img src="https://picsum.photos/600/400?3">
+        <div class="project-content">
+          <h3>Icarus Rising</h3>
+          <div class="project-meta">Systems Design</div>
+        </div>
+      </div>
+
+      <div class="project-card" data-title="Echoes" data-details="Puzzle game focused on sound-based mechanics." data-img="https://picsum.photos/600/400?4">
+        <img src="https://picsum.photos/600/400?4">
+        <div class="project-content">
+          <h3>Echoes</h3>
+          <div class="project-meta">Game Designer</div>
+        </div>
+      </div>
+
+      <div class="project-card" data-title="Driftline" data-details="Vehicle handling and physics prototype." data-img="https://picsum.photos/600/400?5">
+        <img src="https://picsum.photos/600/400?5">
+        <div class="project-content">
+          <h3>Driftline</h3>
+          <div class="project-meta">Gameplay Programmer</div>
+        </div>
+      </div>
+
+      <div class="project-card" data-title="Void Signal" data-details="Atmospheric sci-fi exploration experience." data-img="https://picsum.photos/600/400?6">
+        <img src="https://picsum.photos/600/400?6">
+        <div class="project-content">
+          <h3>Void Signal</h3>
+          <div class="project-meta">Narrative Design</div>
+        </div>
+      </div>
+
+    </div>
+    <button class="slider-arrow right">&#10095;</button>
+  </div>
+
+  <div class="project-details" id="project-details">
     <img id="details-img">
     <h3 id="details-title"></h3>
     <p id="details-text"></p>
   </div>
-</div>
 </section>
 
-<!-- SHOWREEL -->
-<section class="reveal">
-<h2>Showreel</h2>
-<iframe src="https://www.youtube.com/embed/fEtlPdAvisw"></iframe>
+<section id="about" class="reveal">
+  <h2>About Me</h2>
+  <div class="about-container">
+    <img src="CasualPortrait.jpeg" class="about-photo">
+    <p>I’m Tarik, a game designer focused on player experience, systems design, and iteration through playtesting.</p>
+  </div>
 </section>
 
-<!-- ABOUT -->
-<section class="reveal">
-<h2>About Me</h2>
-<div class="about">
-  <img src="CasualPortrait.jpeg">
-  <p>Game designer focused on systems, feel, and player experience. Experienced with Unity, gameplay prototyping, and iteration-driven design.</p>
-</div>
+<section id="contact" class="reveal">
+  <h2>Contact Me</h2>
+  <div class="contact-card">
+    <form action="https://formspree.io/f/mojjgbgp" method="POST">
+      <input type="text" name="_gotcha" style="display:none">
+      <label>Name<input type="text" name="name" required></label>
+      <label>Email<input type="email" name="email" required></label>
+      <label>Message<textarea name="message" rows="5" required></textarea></label>
+      <button type="submit">Send Message</button>
+    </form>
+
+    <div class="contact-links">
+      <a href="https://www.linkedin.com/in/tariklaanaya/" target="_blank">
+        <img src="linkedin-icon.svg">
+      </a>
+      <a href="https://tarik-laanaya.itch.io/" target="_blank">
+        <img src="itchio-icon.svg">
+      </a>
+    </div>
+  </div>
 </section>
 
-<!-- CONTACT -->
-<section class="reveal">
-<h2>Contact</h2>
-<form action="https://formspree.io/f/mojjgbgp" method="POST">
-  <input type="text" name="name" placeholder="Name" required>
-  <input type="email" name="email" placeholder="Email" required>
-  <textarea name="message" placeholder="Message" required></textarea>
-  <input type="text" name="_gotcha" style="display:none">
-  <button type="submit">Send</button>
-</form>
+</main>
 
-<div class="socials">
-  <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
-  <a href="https://itch.io" target="_blank"><i class="fab fa-itch-io"></i></a>
-</div>
-</section>
+<footer>© 2025 Tarik Laanaya</footer>
 
 <script>
-// Reveal
-const reveals = document.querySelectorAll('.reveal');
-const obs = new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      e.target.style.opacity=1;
-      e.target.style.transform='translateY(0)';
+// Reveal animation
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = 1;
+      e.target.style.transform = 'translateY(0)';
     }
   });
-},{threshold:.2});
-reveals.forEach(r=>obs.observe(r));
+}, { threshold: 0.2 });
+document.querySelectorAll('.reveal').forEach(s => observer.observe(s));
 
 // Slider
-const slider=document.getElementById('slider');
-function slide(dir){
-  slider.scrollBy({left:dir*340,behavior:'smooth'});
-}
+const slider = document.querySelector('.projects-grid');
+document.querySelector('.slider-arrow.left').onclick = () =>
+  slider.scrollBy({ left: -320, behavior: 'smooth' });
+document.querySelector('.slider-arrow.right').onclick = () =>
+  slider.scrollBy({ left: 320, behavior: 'smooth' });
 
-// Project details
-const cards=document.querySelectorAll('.project-card');
-const details=document.getElementById('project-details');
-const img=document.getElementById('details-img');
-const title=document.getElementById('details-title');
-const text=document.getElementById('details-text');
-let open=null;
+// Project expand
+const cards = document.querySelectorAll('.project-card');
+const details = document.getElementById('project-details');
+const img = document.getElementById('details-img');
+const title = document.getElementById('details-title');
+const text = document.getElementById('details-text');
+const about = document.getElementById('about');
+const contact = document.getElementById('contact');
 
-cards.forEach(c=>{
-  c.onclick=()=>{
-    if(open===c){details.classList.remove('open');open=null;return;}
-    img.src=c.dataset.img;
-    title.textContent=c.dataset.title;
-    text.textContent=c.dataset.details;
+let open = false;
+
+cards.forEach(card => {
+  card.onclick = () => {
+    if (open && title.textContent === card.dataset.title) {
+      details.classList.remove('open');
+      about.style.marginTop = '0';
+      contact.style.marginTop = '0';
+      open = false;
+      return;
+    }
+
+    img.src = card.dataset.img;
+    title.textContent = card.dataset.title;
+    text.textContent = card.dataset.details;
+
     details.classList.add('open');
-    open=c;
+
+    setTimeout(() => {
+      const offset = details.scrollHeight + 40;
+      about.style.marginTop = offset + 'px';
+      contact.style.marginTop = offset + 'px';
+    }, 50);
+
+    open = true;
   };
 });
 </script>
