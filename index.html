@@ -290,8 +290,8 @@ projectCards.forEach(card => {
       detailsText.textContent = card.dataset.details;
       projectDetails.classList.add('open');
       const offset = projectDetails.offsetHeight + 40;
-      aboutSection.style.marginTop = `${offset}px`;
-      contactSection.style.marginTop = `${offset}px`;
+      aboutSection.style.transform = `translateY(${offset}px)`;
+      contactSection.style.transform = `translateY(${offset}px)`;
     }
   });
 });
