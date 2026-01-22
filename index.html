@@ -35,17 +35,27 @@ nav a:hover { color: #94dbff; }
 /* ---------------- MAIN ---------------- */
 main { max-width: 1100px; margin: auto; padding: 3rem 2rem; }
 section h2 { font-family: Poppins, sans-serif; font-size: 2rem; color: #66ccff; text-align: center; margin-bottom: 3rem; }
-.reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s ease; }
+
+/* ---------------- REVEAL ---------------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 
 /* ---------------- ABOUT ---------------- */
-.about-container { display: flex; gap: 2rem; flex-wrap: wrap; align-items: center; justify-content: center; transition: transform 0.5s ease; }
+.about-container { display: flex; gap: 2rem; flex-wrap: wrap; align-items: center; justify-content: center; }
 .about-photo { width: 220px; height: 220px; object-fit: cover; border-radius: 16px; border: 2px solid #66ccff; }
 
 /* ---------------- SHOWREEL ---------------- */
 .video-wrapper { position: relative; padding-top: 56.25%; border-radius: 12px; overflow: hidden; }
 .video-wrapper iframe { position: absolute; inset: 0; width: 100%; height: 100%; }
 
-/* ---------------- PROJECT CARDS (SLIDER) ---------------- */
+/* ---------------- PROJECT CARDS ---------------- */
 .projects-container { position: relative; margin: auto; }
 .projects-grid {
   display: flex;
@@ -69,40 +79,25 @@ section h2 { font-family: Poppins, sans-serif; font-size: 2rem; color: #66ccff; 
 .project-card img { width: 100%; height: 240px; object-fit: cover; }
 .project-content { padding: 1.2rem; }
 .project-meta { font-size: 0.9rem; color: #aaa; margin-bottom: 0.5rem; }
-.project-links a { color: #66ccff; text-decoration: none; font-weight: bold; margin-right: 1rem; }
 
-/* ---------------- PROJECT DETAILS EXPAND ---------------- */
+/* ---------------- PROJECT DETAILS ---------------- */
 .project-details {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.5s ease, opacity 0.5s ease, padding 0.5s ease;
   opacity: 0;
-  margin-top: 1rem;
+  transition: max-height 0.5s ease, opacity 0.5s ease, padding 0.5s ease;
   background: #111;
   border-radius: 12px;
   padding: 0 1rem;
+  margin-top: 1rem;
 }
 .project-details.open {
-  max-height: 600px; /* enough for content */
-  padding: 1.5rem;
+  max-height: 600px;
   opacity: 1;
-  animation: slideDownFade 0.5s ease;
-}
-
-/* Pop-up animation */
-@keyframes slideDownFade {
-  0% { transform: translateY(-20px); opacity: 0; }
-  100% { transform: translateY(0); opacity: 1; }
-}
-
-/* Smoothly push About & Contact down by margin instead of transform */
-#about, #contact {
-  transition: margin-top 0.5s ease;
+  padding: 1.5rem;
 }
 
 .project-details img { width: 100%; height: 300px; object-fit: cover; border-radius: 12px; margin-bottom: 1rem; }
-.project-details h3 { color: #66ccff; margin-bottom: 0.5rem; }
-.project-details p { color: #ccc; }
 
 /* ---------------- SLIDER ARROWS ---------------- */
 .slider-arrow {
@@ -118,16 +113,12 @@ section h2 { font-family: Poppins, sans-serif; font-size: 2rem; color: #66ccff; 
   cursor: pointer;
   font-size: 1.8rem;
   z-index: 5;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 .slider-arrow.left { left: -70px; }
 .slider-arrow.right { right: -70px; }
-.slider-arrow:hover { background: #66ccff; }
 
 /* ---------------- CONTACT ---------------- */
-#contact { text-align: center; transition: transform 0.5s ease; }
+#contact { text-align: center; }
 .contact-card {
   max-width: 560px;
   margin: auto;
@@ -136,34 +127,14 @@ section h2 { font-family: Poppins, sans-serif; font-size: 2rem; color: #66ccff; 
   border-radius: 16px;
   box-shadow: 0 20px 40px rgba(0,0,0,0.6);
 }
-.contact-intro { color: #aaa; margin-bottom: 2rem; }
-#contact form { display: flex; flex-direction: column; gap: 1.2rem; }
-#contact label { display: flex; flex-direction: column; text-align: left; font-weight: bold; color: #66ccff; }
-#contact input, #contact textarea { margin-top: 0.4rem; padding: 0.8rem; border-radius: 8px; border: none; background: #1a1a1a; color: #eee; font-size: 1rem; }
-#contact button { margin-top: 1rem; padding: 0.9rem; font-size: 1.1rem; font-weight: bold; background: #66ccff; color: #0d0d0d; border: none; border-radius: 8px; cursor: pointer; }
-.form-status { margin-top: 1rem; font-weight: bold; }
-.contact-links { margin-top: 2rem; display: flex; justify-content: center; gap: 2rem; }
-.contact-links a { color: #66ccff; text-decoration: none; font-weight: bold; }
 
 /* ---------------- FOOTER ---------------- */
 footer { text-align: center; padding: 2rem; color: #666; }
-
-/* ---------------- MOBILE ---------------- */
-@media (max-width: 768px) {
-  header { padding: 1rem; }
-  .video-hero { height: 360px; }
-  .hero-overlay h2 { font-size: 2rem; padding: 0 1rem; }
-  .about-container { flex-direction: column; }
-  .projects-grid { gap: 1rem; overflow-x: scroll; scroll-snap-type: x mandatory; }
-  .project-card { flex: 0 0 80%; scroll-snap-align: start; }
-  .project-card img { height: 180px; }
-  #contact .contact-card { padding: 2rem 1rem; }
-  .slider-arrow { display: none; }
-}
 </style>
 </head>
 
 <body>
+
 <header>
   <h1>Tarik Laanaya</h1>
   <nav>
@@ -182,6 +153,7 @@ footer { text-align: center; padding: 2rem; color: #666; }
 </section>
 
 <main>
+
 <section id="showreel" class="reveal">
   <h2>Showreel</h2>
   <div class="video-wrapper">
@@ -191,32 +163,23 @@ footer { text-align: center; padding: 2rem; color: #666; }
 
 <section id="projects" class="reveal">
   <h2>Selected Projects</h2>
+
   <div class="projects-container">
-    <button class="slider-arrow left">&#10094;</button>
     <div class="projects-grid">
-      <div class="project-card" data-title="Forest Quest" data-details="A narrative exploration game teaching environmental storytelling. Role: Game Designer. Tools: Unity, C#" data-img="https://picsum.photos/600/400">
-        <img src="https://picsum.photos/600/400" alt="">
-        <div class="project-content">
-          <h3>Forest Quest</h3>
-          <div class="project-meta">Role: Game Designer • Tools: Unity, C#</div>
-          <p>Narrative exploration game focused on environmental storytelling.</p>
-        </div>
+      <div class="project-card" data-title="Forest Quest" data-details="A narrative exploration game teaching environmental storytelling." data-img="https://picsum.photos/600/400">
+        <img src="https://picsum.photos/600/400">
+        <div class="project-content"><h3>Forest Quest</h3></div>
       </div>
-      <div class="project-card" data-title="Skyborne" data-details="Aerial exploration game with dynamic environments. Role: Level Designer. Tools: Unity, C#" data-img="https://picsum.photos/601/400">
-        <img src="https://picsum.photos/601/400" alt="">
-        <div class="project-content">
-          <h3>Skyborne</h3>
-          <div class="project-meta">Role: Level Designer • Tools: Unity, C#</div>
-          <p>Aerial exploration with dynamic environments.</p>
-        </div>
+
+      <div class="project-card" data-title="Skyborne" data-details="Aerial exploration game with dynamic environments." data-img="https://picsum.photos/601/400">
+        <img src="https://picsum.photos/601/400">
+        <div class="project-content"><h3>Skyborne</h3></div>
       </div>
     </div>
-    <button class="slider-arrow right">&#10095;</button>
   </div>
 
-  <!-- Project Details Expanded Section -->
   <div class="project-details" id="project-details">
-    <img id="details-img" src="" alt="">
+    <img id="details-img">
     <h3 id="details-title"></h3>
     <p id="details-text"></p>
   </div>
@@ -226,90 +189,56 @@ footer { text-align: center; padding: 2rem; color: #666; }
   <h2>About Me</h2>
   <div class="about-container">
     <img src="CasualPortrait.jpeg" class="about-photo">
-    <p>I’m Tarik, a game designer focused on player experience, systems design, and iteration through playtesting.</p>
+    <p>I’m Tarik, a game designer focused on player experience and systems design.</p>
   </div>
 </section>
 
 <section id="contact" class="reveal">
   <h2>Contact Me</h2>
   <div class="contact-card">
-    <p class="contact-intro">Let’s talk game design, systems, or opportunities.</p>
-    <form id="contact-form" action="https://formspree.io/f/mojjgbgp" method="POST">
-      <input type="text" name="_gotcha" style="display:none">
-      <label>Name<input type="text" name="name" required></label>
-      <label>Email<input type="email" name="email" required></label>
-      <label>Message<textarea name="message" rows="5" required></textarea></label>
-      <button type="submit">Send Message</button>
-      <p id="form-status" class="form-status"></p>
-    </form>
-    <div class="contact-links">
-      <a href="https://www.linkedin.com/in/tariklaanaya/" target="_blank">LinkedIn</a>
-      <a href="https://tarik-laanaya.itch.io/" target="_blank">itch.io</a>
-    </div>
+    <p>Let’s talk game design and opportunities.</p>
   </div>
 </section>
+
 </main>
 
 <footer>© 2025 Tarik Laanaya</footer>
 
 <script>
-// Section reveal
+/* -------- REVEAL ONCE -------- */
 const revealSections = document.querySelectorAll('.reveal');
-const observer = new IntersectionObserver(entries => {
+
+const observer = new IntersectionObserver((entries, obs) => {
   entries.forEach(entry => {
-    if(entry.isIntersecting){
-      entry.target.style.opacity = 1;
-      entry.target.style.transform = 'translateY(0)';
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      obs.unobserve(entry.target);
     }
   });
 }, { threshold: 0.2 });
+
 revealSections.forEach(sec => observer.observe(sec));
 
-// Contact form
-const form = document.getElementById("contact-form");
-const status = document.getElementById("form-status");
-form.addEventListener("submit", async e => {
-  e.preventDefault();
-  const data = new FormData(form);
-  try {
-    const res = await fetch(form.action, { method: form.method, body: data, headers: { "Accept": "application/json" } });
-    if(res.ok){ status.textContent = "Thanks! Your message has been sent."; status.style.color="#66ff99"; form.reset(); }
-    else{ status.textContent = "Something went wrong. Try again."; status.style.color="#ff6666"; }
-  } catch { status.textContent = "Network error. Please try later."; status.style.color="#ff6666"; }
-});
+/* -------- PROJECT EXPAND -------- */
+const cards = document.querySelectorAll('.project-card');
+const details = document.getElementById('project-details');
+const img = document.getElementById('details-img');
+const title = document.getElementById('details-title');
+const text = document.getElementById('details-text');
 
-// Slider arrows
-const slider = document.querySelector('.projects-grid');
-document.querySelector('.slider-arrow.left').addEventListener('click', () => { slider.scrollBy({ left: -320, behavior: 'smooth' }); });
-document.querySelector('.slider-arrow.right').addEventListener('click', () => { slider.scrollBy({ left: 320, behavior: 'smooth' }); });
-
-// Project expand section
-const projectCards = document.querySelectorAll('.project-card');
-const projectDetails = document.getElementById('project-details');
-const detailsImg = document.getElementById('details-img');
-const detailsTitle = document.getElementById('details-title');
-const detailsText = document.getElementById('details-text');
-const aboutSection = document.getElementById('about');
-const contactSection = document.getElementById('contact');
-
-projectCards.forEach(card => {
+cards.forEach(card => {
   card.addEventListener('click', () => {
-    if(projectDetails.classList.contains('open') && detailsTitle.textContent === card.dataset.title){
-      // Collapse if clicked same card
-      projectDetails.classList.remove('open');
-      aboutSection.style.transform = 'translateY(0)';
-      contactSection.style.transform = 'translateY(0)';
+    if (details.classList.contains('open') && title.textContent === card.dataset.title) {
+      details.classList.remove('open');
     } else {
-      detailsImg.src = card.dataset.img;
-      detailsTitle.textContent = card.dataset.title;
-      detailsText.textContent = card.dataset.details;
-      projectDetails.classList.add('open');
-      const offset = projectDetails.offsetHeight + 40;
-      aboutSection.style.marginTop = `${offset}px`;
-      contactSection.style.marginTop = `${offset}px`;
+      img.src = card.dataset.img;
+      title.textContent = card.dataset.title;
+      text.textContent = card.dataset.details;
+      details.classList.add('open');
     }
   });
 });
 </script>
+
 </body>
 </html>
