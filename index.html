@@ -24,13 +24,12 @@ header {
 }
 header h1 { margin: 1rem 0; font-family: Poppins, sans-serif; }
 nav a { color: #66ccff; margin: 0 1rem; text-decoration: none; font-weight: bold; }
-nav a:hover { color: #94dbff; }
 
-/* ---------------- HERO VIDEO ---------------- */
+/* ---------------- HERO ---------------- */
 .video-hero { position: relative; height: 520px; overflow: hidden; border-bottom: 4px solid #66ccff; }
 .video-hero video { width: 100%; height: 100%; object-fit: cover; }
 .hero-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.6); display: flex; justify-content: center; align-items: center; }
-.hero-overlay h2 { font-size: 3rem; color: #66ccff; text-align: center; }
+.hero-overlay h2 { font-size: 3rem; color: #66ccff; }
 
 /* ---------------- MAIN ---------------- */
 main { max-width: 1100px; margin: auto; padding: 3rem 2rem; }
@@ -47,75 +46,70 @@ section h2 { font-family: Poppins, sans-serif; font-size: 2rem; color: #66ccff; 
   transform: translateY(0);
 }
 
-/* ---------------- ABOUT ---------------- */
-.about-container { display: flex; gap: 2rem; flex-wrap: wrap; align-items: center; justify-content: center; }
-.about-photo { width: 220px; height: 220px; object-fit: cover; border-radius: 16px; border: 2px solid #66ccff; }
-
 /* ---------------- SHOWREEL ---------------- */
 .video-wrapper { position: relative; padding-top: 56.25%; border-radius: 12px; overflow: hidden; }
 .video-wrapper iframe { position: absolute; inset: 0; width: 100%; height: 100%; }
 
-/* ---------------- PROJECT CARDS ---------------- */
-.projects-container { position: relative; margin: auto; }
+/* ---------------- PROJECTS ---------------- */
 .projects-grid {
   display: flex;
   gap: 2rem;
   overflow-x: auto;
-  scroll-behavior: smooth;
   padding-bottom: 1rem;
 }
-.projects-grid::-webkit-scrollbar { height: 10px; }
-.projects-grid::-webkit-scrollbar-thumb { background: #66ccff66; border-radius: 10px; }
 
 .project-card {
   flex: 0 0 300px;
   background: #111;
   border-radius: 12px;
-  overflow: hidden;
-  transition: transform 0.3s ease;
   cursor: pointer;
+  transition: transform 0.3s ease;
 }
 .project-card:hover { transform: translateY(-6px); }
-.project-card img { width: 100%; height: 240px; object-fit: cover; }
-.project-content { padding: 1.2rem; }
-.project-meta { font-size: 0.9rem; color: #aaa; margin-bottom: 0.5rem; }
+.project-card img { width: 100%; height: 220px; object-fit: cover; }
+.project-content { padding: 1rem; }
 
-/* ---------------- PROJECT DETAILS ---------------- */
+/* ---------------- PROJECT DETAILS (FIXED) ---------------- */
 .project-details {
-  max-height: 0;
   overflow: hidden;
+  max-height: 0;
   opacity: 0;
-  transition: max-height 0.5s ease, opacity 0.5s ease, padding 0.5s ease;
+  padding: 0;
+  margin-top: 1rem;
   background: #111;
   border-radius: 12px;
-  padding: 0 1rem;
-  margin-top: 1rem;
+  transition: max-height 0.45s ease, opacity 0.3s ease, padding 0.3s ease;
 }
+
 .project-details.open {
-  max-height: 600px;
+  max-height: 800px;
   opacity: 1;
   padding: 1.5rem;
 }
 
-.project-details img { width: 100%; height: 300px; object-fit: cover; border-radius: 12px; margin-bottom: 1rem; }
-
-/* ---------------- SLIDER ARROWS ---------------- */
-.slider-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(102,204,255,0.8);
-  color: #0d0d0d;
-  border: none;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  cursor: pointer;
-  font-size: 1.8rem;
-  z-index: 5;
+.project-details img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 1rem;
 }
-.slider-arrow.left { left: -70px; }
-.slider-arrow.right { right: -70px; }
+
+/* ---------------- ABOUT ---------------- */
+.about-container {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.about-photo {
+  width: 220px;
+  height: 220px;
+  border-radius: 16px;
+  border: 2px solid #66ccff;
+  object-fit: cover;
+}
 
 /* ---------------- CONTACT ---------------- */
 #contact { text-align: center; }
@@ -123,9 +117,8 @@ section h2 { font-family: Poppins, sans-serif; font-size: 2rem; color: #66ccff; 
   max-width: 560px;
   margin: auto;
   padding: 2.5rem;
-  background: linear-gradient(180deg, #111, #0b0b0b);
+  background: #111;
   border-radius: 16px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.6);
 }
 
 /* ---------------- FOOTER ---------------- */
@@ -164,17 +157,21 @@ footer { text-align: center; padding: 2rem; color: #666; }
 <section id="projects" class="reveal">
   <h2>Selected Projects</h2>
 
-  <div class="projects-container">
-    <div class="projects-grid">
-      <div class="project-card" data-title="Forest Quest" data-details="A narrative exploration game teaching environmental storytelling." data-img="https://picsum.photos/600/400">
-        <img src="https://picsum.photos/600/400">
-        <div class="project-content"><h3>Forest Quest</h3></div>
-      </div>
+  <div class="projects-grid">
+    <div class="project-card"
+      data-title="Forest Quest"
+      data-details="A narrative exploration game teaching environmental storytelling."
+      data-img="https://picsum.photos/600/400">
+      <img src="https://picsum.photos/600/400">
+      <div class="project-content"><h3>Forest Quest</h3></div>
+    </div>
 
-      <div class="project-card" data-title="Skyborne" data-details="Aerial exploration game with dynamic environments." data-img="https://picsum.photos/601/400">
-        <img src="https://picsum.photos/601/400">
-        <div class="project-content"><h3>Skyborne</h3></div>
-      </div>
+    <div class="project-card"
+      data-title="Skyborne"
+      data-details="Aerial exploration game with dynamic environments."
+      data-img="https://picsum.photos/601/400">
+      <img src="https://picsum.photos/601/400">
+      <div class="project-content"><h3>Skyborne</h3></div>
     </div>
   </div>
 
@@ -219,7 +216,7 @@ const observer = new IntersectionObserver((entries, obs) => {
 
 revealSections.forEach(sec => observer.observe(sec));
 
-/* -------- PROJECT EXPAND -------- */
+/* -------- PROJECT DETAILS (NO LAYOUT MUTATION) -------- */
 const cards = document.querySelectorAll('.project-card');
 const details = document.getElementById('project-details');
 const img = document.getElementById('details-img');
@@ -228,14 +225,17 @@ const text = document.getElementById('details-text');
 
 cards.forEach(card => {
   card.addEventListener('click', () => {
-    if (details.classList.contains('open') && title.textContent === card.dataset.title) {
+    const sameCard = title.textContent === card.dataset.title;
+
+    if (details.classList.contains('open') && sameCard) {
       details.classList.remove('open');
-    } else {
-      img.src = card.dataset.img;
-      title.textContent = card.dataset.title;
-      text.textContent = card.dataset.details;
-      details.classList.add('open');
+      return;
     }
+
+    img.src = card.dataset.img;
+    title.textContent = card.dataset.title;
+    text.textContent = card.dataset.details;
+    details.classList.add('open');
   });
 });
 </script>
