@@ -274,8 +274,8 @@ const projectDetails = document.getElementById('project-details');
 const detailsImg = document.getElementById('details-img');
 const detailsTitle = document.getElementById('details-title');
 const detailsText = document.getElementById('details-text');
-aboutSection.style.marginTop = `${offset}px`;
-contactSection.style.marginTop = `${offset}px`;
+const aboutSection = document.getElementById('about');
+const contactSection = document.getElementById('contact');
 
 projectCards.forEach(card => {
   card.addEventListener('click', () => {
@@ -290,8 +290,8 @@ projectCards.forEach(card => {
       detailsText.textContent = card.dataset.details;
       projectDetails.classList.add('open');
       const offset = projectDetails.offsetHeight + 40;
-      aboutSection.style.transform = `translateY(${offset}px)`;
-      contactSection.style.transform = `translateY(${offset}px)`;
+      aboutSection.style.marginTop = `${offset}px`;
+      contactSection.style.marginTop = `${offset}px`;
     }
   });
 });
