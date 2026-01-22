@@ -10,7 +10,12 @@
 <style>
 /* ---------------- GENERAL ---------------- */
 * { box-sizing: border-box; }
-body { margin: 0; font-family: Roboto, sans-serif; background: #0d0d0d; color: #eee; }
+body {
+  margin: 0;
+  font-family: Roboto, sans-serif;
+  background: #0d0d0d;
+  color: #eee;
+}
 section[id] { scroll-margin-top: 130px; }
 
 /* ---------------- HEADER ---------------- */
@@ -23,17 +28,40 @@ header {
   z-index: 10;
 }
 header h1 { margin: 1rem 0; font-family: Poppins, sans-serif; }
-nav a { color: #66ccff; margin: 0 1rem; text-decoration: none; font-weight: bold; }
+nav a {
+  color: #66ccff;
+  margin: 0 1rem;
+  text-decoration: none;
+  font-weight: bold;
+}
 
 /* ---------------- HERO ---------------- */
-.video-hero { position: relative; height: 520px; overflow: hidden; border-bottom: 4px solid #66ccff; }
+.video-hero {
+  position: relative;
+  height: 520px;
+  overflow: hidden;
+  border-bottom: 4px solid #66ccff;
+}
 .video-hero video { width: 100%; height: 100%; object-fit: cover; }
-.hero-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.6); display: flex; justify-content: center; align-items: center; }
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .hero-overlay h2 { font-size: 3rem; color: #66ccff; }
 
 /* ---------------- MAIN ---------------- */
 main { max-width: 1100px; margin: auto; padding: 3rem 2rem; }
-section h2 { font-family: Poppins, sans-serif; font-size: 2rem; color: #66ccff; text-align: center; margin-bottom: 3rem; }
+section h2 {
+  font-family: Poppins, sans-serif;
+  font-size: 2rem;
+  color: #66ccff;
+  text-align: center;
+  margin-bottom: 3rem;
+}
 
 /* ---------------- REVEAL ---------------- */
 .reveal {
@@ -47,8 +75,18 @@ section h2 { font-family: Poppins, sans-serif; font-size: 2rem; color: #66ccff; 
 }
 
 /* ---------------- SHOWREEL ---------------- */
-.video-wrapper { position: relative; padding-top: 56.25%; border-radius: 12px; overflow: hidden; }
-.video-wrapper iframe { position: absolute; inset: 0; width: 100%; height: 100%; }
+.video-wrapper {
+  position: relative;
+  padding-top: 56.25%;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.video-wrapper iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
 
 /* ---------------- PROJECTS ---------------- */
 .projects-grid {
@@ -57,7 +95,6 @@ section h2 { font-family: Poppins, sans-serif; font-size: 2rem; color: #66ccff; 
   overflow-x: auto;
   padding-bottom: 1rem;
 }
-
 .project-card {
   flex: 0 0 300px;
   background: #111;
@@ -66,25 +103,36 @@ section h2 { font-family: Poppins, sans-serif; font-size: 2rem; color: #66ccff; 
   transition: transform 0.3s ease;
 }
 .project-card:hover { transform: translateY(-6px); }
-.project-card img { width: 100%; height: 220px; object-fit: cover; }
+.project-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
 .project-content { padding: 1rem; }
 
-/* ---------------- PROJECT DETAILS (FIXED) ---------------- */
+/* ---------------- PROJECT DETAILS (CROSSFADE) ---------------- */
 .project-details {
-  overflow: hidden;
-  max-height: 0;
-  opacity: 0;
-  padding: 0;
   margin-top: 1rem;
   background: #111;
   border-radius: 12px;
-  transition: max-height 0.45s ease, opacity 0.3s ease, padding 0.3s ease;
+  overflow: hidden;
+  max-height: 0;
+  padding: 0;
+  transition: max-height 0.5s ease, padding 0.3s ease;
 }
 
 .project-details.open {
   max-height: 800px;
-  opacity: 1;
   padding: 1.5rem;
+}
+
+.project-details-inner {
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.project-details.show .project-details-inner {
+  opacity: 1;
 }
 
 .project-details img {
@@ -122,7 +170,11 @@ section h2 { font-family: Poppins, sans-serif; font-size: 2rem; color: #66ccff; 
 }
 
 /* ---------------- FOOTER ---------------- */
-footer { text-align: center; padding: 2rem; color: #666; }
+footer {
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+}
 </style>
 </head>
 
@@ -176,9 +228,11 @@ footer { text-align: center; padding: 2rem; color: #666; }
   </div>
 
   <div class="project-details" id="project-details">
-    <img id="details-img">
-    <h3 id="details-title"></h3>
-    <p id="details-text"></p>
+    <div class="project-details-inner">
+      <img id="details-img">
+      <h3 id="details-title"></h3>
+      <p id="details-text"></p>
+    </div>
   </div>
 </section>
 
@@ -216,26 +270,40 @@ const observer = new IntersectionObserver((entries, obs) => {
 
 revealSections.forEach(sec => observer.observe(sec));
 
-/* -------- PROJECT DETAILS (NO LAYOUT MUTATION) -------- */
+/* -------- PROJECT DETAILS CROSSFADE -------- */
 const cards = document.querySelectorAll('.project-card');
 const details = document.getElementById('project-details');
+const inner = details.querySelector('.project-details-inner');
 const img = document.getElementById('details-img');
 const title = document.getElementById('details-title');
 const text = document.getElementById('details-text');
 
+let activeTitle = null;
+
 cards.forEach(card => {
   card.addEventListener('click', () => {
-    const sameCard = title.textContent === card.dataset.title;
+    const sameCard = activeTitle === card.dataset.title;
 
     if (details.classList.contains('open') && sameCard) {
-      details.classList.remove('open');
+      details.classList.remove('open', 'show');
+      activeTitle = null;
       return;
     }
 
-    img.src = card.dataset.img;
-    title.textContent = card.dataset.title;
-    text.textContent = card.dataset.details;
-    details.classList.add('open');
+    if (!details.classList.contains('open')) {
+      details.classList.add('open');
+      setTimeout(() => details.classList.add('show'), 20);
+    } else {
+      inner.style.opacity = 0;
+    }
+
+    setTimeout(() => {
+      img.src = card.dataset.img;
+      title.textContent = card.dataset.title;
+      text.textContent = card.dataset.details;
+      inner.style.opacity = 1;
+      activeTitle = card.dataset.title;
+    }, details.classList.contains('show') ? 200 : 0);
   });
 });
 </script>
