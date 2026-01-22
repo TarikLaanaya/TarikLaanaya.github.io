@@ -9,10 +9,8 @@
 
 <style>
 
-/* Offset anchor scroll to account for sticky header */
-section[id] {
-  scroll-margin-top: 130px;
-}
+/* Offset anchor scroll for sticky header */
+section[id] { scroll-margin-top: 130px; }
 
 * { box-sizing: border-box; }
 
@@ -64,10 +62,10 @@ nav a:hover { color: #fff; }
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.6);
   display: flex;
   justify-content: center;
   align-items: center;
+  background: rgba(0,0,0,0.6);
 }
 
 .hero-overlay h2 {
@@ -83,7 +81,12 @@ main {
   padding: 3rem 2rem;
 }
 
-section { margin-bottom: 4rem; }
+section { 
+  margin-bottom: 4rem; 
+  opacity: 0; 
+  transform: translateY(40px); 
+  transition: all 0.8s ease; 
+}
 
 section h2 {
   font-family: Poppins, sans-serif;
@@ -238,6 +241,13 @@ footer {
   color: #666;
 }
 
+/* ---------------- MOBILE ---------------- */
+@media(max-width:768px){
+  .about-container { flex-direction: column; text-align: center; }
+  .video-hero { height: 300px; }
+  .projects-grid { grid-template-columns: 1fr; }
+}
+
 </style>
 </head>
 
@@ -326,21 +336,32 @@ footer {
 <footer>© 2025 Tarik Laanaya</footer>
 
 <script>
+// Animated section reveal
+const sections = document.querySelectorAll('main section');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.style.opacity = 1;
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.2 });
+
+sections.forEach(sec => observer.observe(sec));
+
+// Contact form async submit
 const form = document.getElementById("contact-form");
 const status = document.getElementById("form-status");
-
-form.addEventListener("submit", async (e) => {
+form.addEventListener("submit", async e => {
   e.preventDefault();
   const data = new FormData(form);
-
   try {
     const res = await fetch(form.action, {
       method: form.method,
       body: data,
       headers: { "Accept": "application/json" }
     });
-
-    if (res.ok) {
+    if(res.ok){
       status.textContent = "Thanks! Your message has been sent.";
       status.style.color = "#66ff99";
       form.reset();
