@@ -127,8 +127,18 @@ section h2 { font-family: Poppins, sans-serif; font-size: 2rem; color: #66ccff; 
 #contact input, #contact textarea { margin-top: 0.4rem; padding: 0.8rem; border-radius: 8px; border: none; background: #1a1a1a; color: #eee; font-size: 1rem; }
 #contact button { margin-top: 1rem; padding: 0.9rem; font-size: 1.1rem; font-weight: bold; background: #66ccff; color: #0d0d0d; border: none; border-radius: 8px; cursor: pointer; }
 .form-status { margin-top: 1rem; font-weight: bold; }
-.contact-links { margin-top: 2rem; display: flex; justify-content: center; gap: 2rem; }
-.contact-links a { color: #66ccff; text-decoration: none; font-weight: bold; }
+  
+.contact-links {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.contact-links img {
+  width: 36px;
+  height: 36px;
+}
 
 /* ---------------- FOOTER ---------------- */
 footer { text-align: center; padding: 2rem; color: #666; }
@@ -228,8 +238,12 @@ footer { text-align: center; padding: 2rem; color: #666; }
       <p id="form-status" class="form-status"></p>
     </form>
     <div class="contact-links">
-      <a href="https://www.linkedin.com/in/tariklaanaya/" target="_blank">LinkedIn</a>
-      <a href="https://tarik-laanaya.itch.io/" target="_blank">itch.io</a>
+      <a href="https://www.linkedin.com/in/tariklaanaya/" target="_blank">
+        <img src="linkedin-icon.svg">
+      </a>
+      <a href="https://tarik-laanaya.itch.io/" target="_blank">
+        <img src="itchio-icon.svg">
+      </a>
     </div>
   </div>
 </section>
