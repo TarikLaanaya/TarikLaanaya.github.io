@@ -75,19 +75,30 @@ section h2 { font-family: Poppins, sans-serif; font-size: 2rem; color: #66ccff; 
 .project-details {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.5s ease, padding 0.5s ease;
+  transition: max-height 0.5s ease, opacity 0.5s ease, padding 0.5s ease;
+  opacity: 0;
   margin-top: 1rem;
   background: #111;
   border-radius: 12px;
   padding: 0 1rem;
 }
 .project-details.open {
+  max-height: 600px; /* enough for content */
   padding: 1.5rem;
-  max-height: 600px; /* large enough to fit content */
+  opacity: 1;
+  animation: slideDownFade 0.5s ease;
 }
-.project-details img { width: 100%; height: 300px; object-fit: cover; border-radius: 12px; margin-bottom: 1rem; }
-.project-details h3 { color: #66ccff; margin-bottom: 0.5rem; }
-.project-details p { color: #ccc; }
+
+/* Pop-up animation */
+@keyframes slideDownFade {
+  0% { transform: translateY(-20px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+/* Smoothly push About & Contact down by margin instead of transform */
+#about, #contact {
+  transition: margin-top 0.5s ease;
+}
 
 /* ---------------- SLIDER ARROWS ---------------- */
 .slider-arrow {
@@ -296,8 +307,8 @@ projectCards.forEach(card => {
     if(projectDetails.classList.contains('open') && detailsTitle.textContent === card.dataset.title){
       // Collapse if clicked same card
       projectDetails.classList.remove('open');
-      aboutSection.style.transform = 'translateY(0)';
-      contactSection.style.transform = 'translateY(0)';
+      aboutSection.style.marginTop = `${offset}px`;
+      contactSection.style.marginTop = `${offset}px`;
     } else {
       detailsImg.src = card.dataset.img;
       detailsTitle.textContent = card.dataset.title;
