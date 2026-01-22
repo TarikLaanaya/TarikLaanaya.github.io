@@ -8,13 +8,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@600&display=swap" rel="stylesheet">
 
 <style>
-  
+
 /* Offset anchor scroll to account for sticky header */
 section[id] {
-  scroll-margin-top: 120px; /* adjust if needed */
+  scroll-margin-top: 120px;
 }
-  
+
 * { box-sizing: border-box; }
+
 body {
   margin: 0;
   font-family: Roboto, sans-serif;
@@ -31,16 +32,19 @@ header {
   text-align: center;
   z-index: 10;
 }
+
 header h1 {
   margin: 0;
   font-family: Poppins, sans-serif;
 }
+
 nav a {
   color: #bbb;
   margin: 0 1rem;
   text-decoration: none;
   font-weight: bold;
 }
+
 nav a:hover { color: #fff; }
 
 /* ---------------- HERO VIDEO ---------------- */
@@ -50,25 +54,26 @@ nav a:hover { color: #fff; }
   overflow: hidden;
   border-bottom: 2px solid #66ccff;
 }
+
 .video-hero video {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
+
 .hero-overlay {
   position: absolute;
   inset: 0;
   background: rgba(0,0,0,0.6);
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
+
 .hero-overlay h2 {
   font-size: 3rem;
   color: #66ccff;
 }
-.hero-overlay p { font-size: 1.3rem; }
 
 /* ---------------- MAIN ---------------- */
 main {
@@ -76,7 +81,9 @@ main {
   margin: auto;
   padding: 3rem 2rem;
 }
+
 section { margin-bottom: 4rem; }
+
 section h2 {
   font-family: Poppins, sans-serif;
   color: #66ccff;
@@ -89,6 +96,7 @@ section h2 {
   flex-wrap: wrap;
   align-items: center;
 }
+
 .about-photo {
   width: 220px;
   height: 220px;
@@ -104,6 +112,7 @@ section h2 {
   border-radius: 12px;
   overflow: hidden;
 }
+
 .video-wrapper iframe {
   position: absolute;
   inset: 0;
@@ -117,26 +126,30 @@ section h2 {
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
 }
+
 .project-card {
   background: #111;
   border-radius: 12px;
   overflow: hidden;
   transition: transform 0.3s ease;
 }
+
 .project-card:hover { transform: translateY(-6px); }
+
 .project-card img {
   width: 100%;
   height: 180px;
   object-fit: cover;
 }
-.project-content {
-  padding: 1.2rem;
-}
+
+.project-content { padding: 1.2rem; }
+
 .project-meta {
   font-size: 0.9rem;
   color: #aaa;
   margin-bottom: 0.5rem;
 }
+
 .project-links a {
   color: #66ccff;
   text-decoration: none;
@@ -150,47 +163,79 @@ section h2 {
   padding: 2rem;
   border-radius: 12px;
 }
+
 .case-study h3 { color: #66ccff; }
 
-/* ---------------- CONTACT ---------------- */
-.contact-form {
-  max-width: 500px;
+/* ---------------- CONTACT (AAA STYLE) ---------------- */
+#contact { text-align: center; }
+
+.contact-card {
+  max-width: 560px;
   margin: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  padding: 2.5rem;
+  background: linear-gradient(180deg, #111, #0b0b0b);
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.6);
 }
 
-.contact-form label {
+.contact-intro {
+  color: #aaa;
+  margin-bottom: 2rem;
+}
+
+#contact form {
   display: flex;
   flex-direction: column;
+  gap: 1.2rem;
+}
+
+#contact label {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
   font-weight: bold;
   color: #66ccff;
 }
 
-.contact-form input,
-.contact-form textarea {
+#contact input,
+#contact textarea {
   margin-top: 0.4rem;
-  padding: 0.7rem;
-  border-radius: 6px;
+  padding: 0.8rem;
+  border-radius: 8px;
   border: none;
+  background: #1a1a1a;
+  color: #eee;
   font-size: 1rem;
 }
 
-.contact-form button {
+#contact button {
   margin-top: 1rem;
-  padding: 0.8rem;
+  padding: 0.9rem;
   font-size: 1.1rem;
   font-weight: bold;
   background: #66ccff;
-  color: #111;
+  color: #0d0d0d;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: pointer;
 }
 
-.contact-form button:hover {
-  background: #5599dd;
+.form-status {
+  margin-top: 1rem;
+  font-weight: bold;
+}
+
+.contact-links {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.contact-links a {
+  color: #66ccff;
+  text-decoration: none;
+  font-weight: bold;
 }
 
 /* ---------------- FOOTER ---------------- */
@@ -199,6 +244,7 @@ footer {
   padding: 2rem;
   color: #666;
 }
+
 </style>
 </head>
 
@@ -210,7 +256,7 @@ footer {
     <a href="#showreel">Showreel</a>
     <a href="#projects">Projects</a>
     <a href="#about">About</a>
-    <a href="#contact">Contact Me</a>
+    <a href="#contact">Contact</a>
   </nav>
 </header>
 
@@ -228,27 +274,18 @@ footer {
 <section id="showreel">
   <h2>Showreel</h2>
   <div class="video-wrapper">
-    <iframe
-      src="https://www.youtube.com/embed/fEtlPdAvisw"
-      title="Game Design Showreel"
-      frameborder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen>
-    </iframe>
+    <iframe src="https://www.youtube.com/embed/fEtlPdAvisw" allowfullscreen></iframe>
   </div>
 </section>
 
 <section id="projects">
   <h2>Selected Projects</h2>
   <div class="projects-grid">
-
     <div class="project-card">
       <img src="https://picsum.photos/600/400" alt="">
       <div class="project-content">
         <h3>Forest Quest</h3>
-        <div class="project-meta">
-          Role: Game Designer • Tools: Unity, C#
-        </div>
+        <div class="project-meta">Role: Game Designer • Tools: Unity, C#</div>
         <p>Narrative exploration game focused on environmental storytelling.</p>
         <div class="project-links">
           <a href="#">itch.io</a>
@@ -256,73 +293,81 @@ footer {
         </div>
       </div>
     </div>
-
   </div>
 </section>
 
 <section class="case-study">
   <h2>Case Study – Forest Quest</h2>
-
   <h3>Goal</h3>
   <p>Create a short narrative experience that teaches mechanics through exploration.</p>
-
-  <h3>My Responsibilities</h3>
-  <ul>
-    <li>Core gameplay loop design</li>
-    <li>Level pacing & player onboarding</li>
-    <li>Iteration based on playtesting</li>
-  </ul>
-
-  <h3>Design Challenges</h3>
-  <p>Players initially missed key paths. I solved this by adjusting lighting and landmarks.</p>
-
-  <h3>What I Learned</h3>
-  <p>Environmental cues are more effective than explicit UI.</p>
 </section>
 
 <section id="about">
   <h2>About Me</h2>
   <div class="about-container">
     <img src="CasualPortrait.jpeg" class="about-photo">
-    <p>
-      I’m Tarik, a game designer focused on player experience,
-      systems design, and iteration through playtesting.
-    </p>
+    <p>I’m Tarik, a game designer focused on player experience, systems design, and iteration through playtesting.</p>
   </div>
 </section>
 
 <section id="contact">
   <h2>Contact Me</h2>
 
-  <form
-    action="https://formspree.io/f/mojjgbgp"
-    method="POST"
-    class="contact-form"
-  >
-    <label>
-      Name
-      <input type="text" name="name" required>
-    </label>
+  <div class="contact-card">
+    <p class="contact-intro">Let’s talk game design, systems, or opportunities.</p>
 
-    <label>
-      Email
-      <input type="email" name="email" required>
-    </label>
+    <form id="contact-form" action="https://formspree.io/f/mojjgbgp" method="POST">
+      <!-- Honeypot spam protection -->
+      <input type="text" name="_gotcha" style="display:none">
 
-    <label>
-      Message
-      <textarea name="message" rows="5" required></textarea>
-    </label>
+      <label>Name<input type="text" name="name" required></label>
+      <label>Email<input type="email" name="email" required></label>
+      <label>Message<textarea name="message" rows="5" required></textarea></label>
 
-    <button type="submit">Send Message</button>
-  </form>
+      <button type="submit">Send Message</button>
+      <p id="form-status" class="form-status"></p>
+    </form>
+
+    <div class="contact-links">
+      <a href="https://www.linkedin.com/in/YOUR_LINKEDIN" target="_blank">LinkedIn</a>
+      <a href="https://YOURNAME.itch.io" target="_blank">itch.io</a>
+    </div>
+  </div>
 </section>
 
 </main>
 
-<footer>
-© 2025 Tarik Laanaya
-</footer>
+<footer>© 2025 Tarik Laanaya</footer>
+
+<script>
+const form = document.getElementById("contact-form");
+const status = document.getElementById("form-status");
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const data = new FormData(form);
+
+  try {
+    const res = await fetch(form.action, {
+      method: form.method,
+      body: data,
+      headers: { "Accept": "application/json" }
+    });
+
+    if (res.ok) {
+      status.textContent = "Thanks! Your message has been sent.";
+      status.style.color = "#66ff99";
+      form.reset();
+    } else {
+      status.textContent = "Something went wrong. Try again.";
+      status.style.color = "#ff6666";
+    }
+  } catch {
+    status.textContent = "Network error. Please try later.";
+    status.style.color = "#ff6666";
+  }
+});
+</script>
 
 </body>
 </html>
