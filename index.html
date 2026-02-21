@@ -15,6 +15,23 @@ body {
   font-family: Roboto, sans-serif;
   background: #0d0d0d;
   color: #eee;
+  position: relative;
+  overflow-x: hidden;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: -20%;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(102, 204, 255, 0.14), transparent 32%),
+    radial-gradient(circle at 80% 30%, rgba(119, 242, 201, 0.10), transparent 34%),
+    radial-gradient(circle at 55% 75%, rgba(102, 204, 255, 0.08), transparent 36%);
+  animation: ambientShift 18s ease-in-out infinite alternate;
+}
+@keyframes ambientShift {
+  from { transform: translate3d(-1.5%, -1.5%, 0) scale(1); }
+  to { transform: translate3d(1.5%, 1.5%, 0) scale(1.06); }
 }
 section[id] { scroll-margin-top: 130px; }
 
@@ -22,17 +39,47 @@ section[id] { scroll-margin-top: 130px; }
 header {
   position: sticky;
   top: 0;
-  background: rgba(10,10,10,0.95);
+  background: rgba(8,8,8,0.9);
+  backdrop-filter: blur(6px);
   padding: 1rem 2rem;
-  text-align: center;
   z-index: 10;
+  border-bottom: 1px solid rgba(102, 204, 255, 0.2);
 }
-header h1 { margin: 1rem 0; font-family: Poppins, sans-serif; }
+.header-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+header h1 { margin: 0; font-family: Poppins, sans-serif; }
+nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
 nav a {
   color: #66ccff;
-  margin: 0 1rem;
   text-decoration: none;
   font-weight: bold;
+}
+.cv-button {
+  display: inline-block;
+  padding: 0.55rem 1rem;
+  border-radius: 999px;
+  border: 1px solid #66ccff;
+  color: #0d0d0d;
+  background: linear-gradient(90deg, #66ccff, #77f2c9);
+  font-weight: bold;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.cv-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(102, 204, 255, 0.3);
 }
 
 /* ---------------- HERO ---------------- */
@@ -97,12 +144,16 @@ section h2 {
 }
 .project-card {
   flex: 0 0 300px;
-  background: #111;
+  background: linear-gradient(180deg, #121212, #0c0c0c);
   border-radius: 12px;
   cursor: pointer;
-  transition: transform 0.3s ease;
+  border: 1px solid rgba(102, 204, 255, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.project-card:hover { transform: translateY(-6px); }
+.project-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 26px rgba(0, 0, 0, 0.35);
+}
 .project-card img {
   width: 100%;
   height: 220px;
@@ -152,15 +203,22 @@ section h2 {
   gap: 2rem;
   align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
 }
 .about-photo {
-  width: 220px;
-  height: 220px;
+  width: 240px;
+  height: 240px;
   border-radius: 16px;
   border: 2px solid #66ccff;
   object-fit: cover;
+  flex-shrink: 0;
+  box-shadow: 0 14px 30px rgba(0,0,0,0.35);
 }
+.about-copy {
+  max-width: 620px;
+  line-height: 1.7;
+  color: #d9d9d9;
+
+.about-copy strong { color: #9bddff; }
 
 /* ---------------- CONTACT ---------------- */
 #contact { text-align: center; }
@@ -199,6 +257,14 @@ section h2 {
 .contact-links { margin-top: 2rem; display: flex; justify-content: center; gap: 2rem; }
 .contact-links a { color: #66ccff; text-decoration: none; font-weight: bold; }
 
+@media (max-width: 780px) {
+  .header-inner { justify-content: center; }
+  .about-container {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
 /* ---------------- FOOTER ---------------- */
 footer {
   text-align: center;
@@ -211,13 +277,16 @@ footer {
 <body>
 
 <header>
-  <h1>Tarik Laanaya</h1>
-  <nav>
-    <a href="#showreel">Showreel</a>
-    <a href="#projects">Projects</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
-  </nav>
+  <div class="header-inner">
+    <h1>Tarik Laanaya</h1>
+    <nav>
+      <a href="#showreel">Showreel</a>
+      <a href="#projects">Projects</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <a href="Tarik_Laanaya_CV.pdf" class="cv-button" download>Download CV</a>
+    </nav>
+  </div>
 </header>
 
 <section class="video-hero">
@@ -287,7 +356,7 @@ footer {
   <h2>About Me</h2>
   <div class="about-container">
     <img src="CasualPortrait.jpeg" class="about-photo" alt="Portrait of Tarik Laanaya">
-    <p>I’m Tarik, a gameplay programmer focused on Unity/C# systems, rapid prototyping, and clean iteration-friendly code.</p>
+    <p class="about-copy">I’m Tarik, a gameplay programmer focused on building responsive mechanics, clear system architecture, and reliable Unity tooling. <strong>Placeholder summary recruiters often like:</strong> “Programmer with hands-on Unity/C# experience, strong ownership across prototyping to polish, and a practical approach to debugging, optimization, and collaboration with design teams.” I enjoy turning design goals into maintainable gameplay code and iterating quickly from playtest feedback.</p>
   </div>
 </section>
 
