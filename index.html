@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Tarik Laanaya – Game Design Portfolio</title>
+<title>Tarik Laanaya – Game Programming Portfolio</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@600&display=swap" rel="stylesheet">
 
@@ -15,6 +15,23 @@ body {
   font-family: Roboto, sans-serif;
   background: #0d0d0d;
   color: #eee;
+  position: relative;
+  overflow-x: hidden;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: -20%;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(102, 204, 255, 0.14), transparent 32%),
+    radial-gradient(circle at 80% 30%, rgba(119, 242, 201, 0.10), transparent 34%),
+    radial-gradient(circle at 55% 75%, rgba(102, 204, 255, 0.08), transparent 36%);
+  animation: ambientShift 18s ease-in-out infinite alternate;
+}
+@keyframes ambientShift {
+  from { transform: translate3d(-1.5%, -1.5%, 0) scale(1); }
+  to { transform: translate3d(1.5%, 1.5%, 0) scale(1.06); }
 }
 section[id] { scroll-margin-top: 130px; }
 
@@ -22,17 +39,47 @@ section[id] { scroll-margin-top: 130px; }
 header {
   position: sticky;
   top: 0;
-  background: rgba(10,10,10,0.95);
+  background: rgba(8,8,8,0.9);
+  backdrop-filter: blur(6px);
   padding: 1rem 2rem;
-  text-align: center;
   z-index: 10;
+  border-bottom: 1px solid rgba(102, 204, 255, 0.2);
 }
-header h1 { margin: 1rem 0; font-family: Poppins, sans-serif; }
+.header-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+header h1 { margin: 0; font-family: Poppins, sans-serif; }
+nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
 nav a {
   color: #66ccff;
-  margin: 0 1rem;
   text-decoration: none;
   font-weight: bold;
+}
+.cv-button {
+  display: inline-block;
+  padding: 0.55rem 1rem;
+  border-radius: 999px;
+  border: 1px solid #66ccff;
+  color: #0d0d0d;
+  background: linear-gradient(90deg, #66ccff, #77f2c9);
+  font-weight: bold;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.cv-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(102, 204, 255, 0.3);
 }
 
 /* ---------------- HERO ---------------- */
@@ -97,12 +144,16 @@ section h2 {
 }
 .project-card {
   flex: 0 0 300px;
-  background: #111;
+  background: linear-gradient(180deg, #121212, #0c0c0c);
   border-radius: 12px;
   cursor: pointer;
-  transition: transform 0.3s ease;
+  border: 1px solid rgba(102, 204, 255, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.project-card:hover { transform: translateY(-6px); }
+.project-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 26px rgba(0, 0, 0, 0.35);
+}
 .project-card img {
   width: 100%;
   height: 220px;
@@ -152,15 +203,22 @@ section h2 {
   gap: 2rem;
   align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
 }
 .about-photo {
-  width: 220px;
-  height: 220px;
+  width: 240px;
+  height: 240px;
   border-radius: 16px;
   border: 2px solid #66ccff;
   object-fit: cover;
+  flex-shrink: 0;
+  box-shadow: 0 14px 30px rgba(0,0,0,0.35);
 }
+.about-copy {
+  max-width: 620px;
+  line-height: 1.7;
+  color: #d9d9d9;
+
+.about-copy strong { color: #9bddff; }
 
 /* ---------------- CONTACT ---------------- */
 #contact { text-align: center; }
@@ -199,6 +257,14 @@ section h2 {
 .contact-links { margin-top: 2rem; display: flex; justify-content: center; gap: 2rem; }
 .contact-links a { color: #66ccff; text-decoration: none; font-weight: bold; }
 
+@media (max-width: 780px) {
+  .header-inner { justify-content: center; }
+  .about-container {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
 /* ---------------- FOOTER ---------------- */
 footer {
   text-align: center;
@@ -211,20 +277,23 @@ footer {
 <body>
 
 <header>
-  <h1>Tarik Laanaya</h1>
-  <nav>
-    <a href="#showreel">Showreel</a>
-    <a href="#projects">Projects</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
-  </nav>
+  <div class="header-inner">
+    <h1>Tarik Laanaya</h1>
+    <nav>
+      <a href="#showreel">Showreel</a>
+      <a href="#projects">Projects</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <a href="Tarik_Laanaya_CV.pdf" class="cv-button" download>Download CV</a>
+    </nav>
+  </div>
 </header>
 
 <section class="video-hero">
   <video autoplay muted loop playsinline>
     <source src="IcarusRisingGameplay.mp4" type="video/mp4">
   </video>
-  <div class="hero-overlay"><h2>Game Design Portfolio</h2></div>
+  <div class="hero-overlay"><h2>Game Programming Portfolio</h2></div>
 </section>
 
 <main>
@@ -237,26 +306,39 @@ footer {
 </section>
 
 <section id="projects" class="reveal">
-  <h2>My Projects</h2>
+  <h2>Programming Projects</h2>
 
   <div class="projects-grid">
     <div class="project-card"
-      data-title="TEST"
-      data-details="TEST"
+      data-title="SYSTEMS PROTOTYPE 01"
+      data-details="Placeholder project focused on rapid gameplay scripting in Unity. Current focus: movement architecture, reusable input handling, and modular component setup for fast iteration. More implementation notes and profiling data to be added soon."
       data-img="IcarusRising.png">
-      <img src="IcarusRising.png">
-      <div class="project-content"><h3>TEST</h3></div>
-      <div class="project-meta">Role: Game Designer • Unity</div>
-      <div class="project-link"><a href="https://tarik-laanaya.itch.io/learn-to-fly-icarus-rising" target="_blank">Itch.io</a></div>
+      <img src="IcarusRising.png" alt="Placeholder project screenshot">
+      <div class="project-content">
+        <h3>SYSTEMS PROTOTYPE 01</h3>
+        <div class="project-meta">Role: Programmer • Tools: Unity, C#</div>
+        <p>Placeholder: gameplay systems and input architecture.</p>
+        <div class="project-links"><a href="https://tarik-laanaya.itch.io/learn-to-fly-icarus-rising" target="_blank" rel="noopener noreferrer">Itch.io</a></div>
+      </div>
     </div>
 
-    <div class="project-card" data-title="Learn To Fly: Icarus Rising" data-details="I was tasked to create a game that demonstrates my abilities within Unity and C#. To do this I decided to look back at one of my childhood favourite games: Learn To Fly. Learn To Fly was a 2D side-scroller about a penguin learning to fly. It was a warm and fun game for me as a kid, and I wanted to recreate that nostalgia. As the sole developer on the project this game showcases my familiarity with the C# and Unity syntax. It utilizes player prefs to store currency, upgrades and progress. The game also features a rudimentary physics system to calculate gliding. There is also a shop system with dynamic UI that provides the user with the exact information they need whilst maintaining simplicity." data-img="IcarusRising.png">
-      <img src="IcarusRising.png" alt="">
+    <div class="project-card" data-title="Learn To Fly: Icarus Rising" data-details="Programming-led Unity project with emphasis on C# gameplay architecture. Includes a custom glide physics implementation, player progression saved through PlayerPrefs, and a data-driven upgrade/shop loop. Built solo with a focus on clean gameplay scripting and iteration speed." data-img="IcarusRising.png">
+      <img src="IcarusRising.png" alt="Learn To Fly Icarus Rising gameplay screenshot">
       <div class="project-content">
         <h3>Learn To Fly: Icarus Rising</h3>
-        <div class="project-meta">Role: Game Designer • Tools: Unity, C#</div>
-        <p>Learn To Fly clone but Greek Mythology.</p>
-        <div class="project-links"><a href="https://tarik-laanaya.itch.io/learn-to-fly-icarus-rising" target="_blank">Itch.io</a></div>
+        <div class="project-meta">Role: Programmer • Tools: Unity, C#</div>
+        <p>Code-first recreation of Learn To Fly with a Greek mythology theme.</p>
+        <div class="project-links"><a href="https://tarik-laanaya.itch.io/learn-to-fly-icarus-rising" target="_blank" rel="noopener noreferrer">Itch.io</a></div>
+      </div>
+    </div>
+
+    <div class="project-card" data-title="AI SANDBOX (PLACEHOLDER)" data-details="Placeholder project for AI behavior experimentation. Planned technical focus: finite state machine setup, utility scoring, and debugging tools for behavior visualization. Content and final media coming soon." data-img="IcarusRising.png">
+      <img src="IcarusRising.png" alt="AI sandbox placeholder screenshot">
+      <div class="project-content">
+        <h3>AI SANDBOX (PLACEHOLDER)</h3>
+        <div class="project-meta">Role: Gameplay Programmer • Tools: Unity, C#</div>
+        <p>Placeholder: enemy behavior systems and AI iteration workflow.</p>
+        <div class="project-links"><a href="https://tarik-laanaya.itch.io/" target="_blank" rel="noopener noreferrer">Itch.io</a></div>
       </div>
     </div>
   </div>
@@ -273,15 +355,15 @@ footer {
 <section id="about" class="reveal">
   <h2>About Me</h2>
   <div class="about-container">
-    <img src="CasualPortrait.jpeg" class="about-photo">
-    <p>I’m Tarik, a game designer focused on player experience and systems design.</p>
+    <img src="CasualPortrait.jpeg" class="about-photo" alt="Portrait of Tarik Laanaya">
+    <p class="about-copy">I’m Tarik, a gameplay programmer focused on building responsive mechanics, clear system architecture, and reliable Unity tooling. <strong>Placeholder summary recruiters often like:</strong> “Programmer with hands-on Unity/C# experience, strong ownership across prototyping to polish, and a practical approach to debugging, optimization, and collaboration with design teams.” I enjoy turning design goals into maintainable gameplay code and iterating quickly from playtest feedback.</p>
   </div>
 </section>
 
 <section id="contact" class="reveal">
   <h2>Contact Me</h2>
   <div class="contact-card">
-    <p class="contact-intro">Let’s talk game design, systems, or opportunities.</p>
+    <p class="contact-intro">Let’s talk gameplay programming, Unity systems, and technical collaboration.</p>
     <form id="contact-form" action="https://formspree.io/f/mojjgbgp" method="POST">
       <input type="text" name="_gotcha" style="display:none">
       <label>Name<input type="text" name="name" required></label>
@@ -291,8 +373,8 @@ footer {
       <p id="form-status" class="form-status"></p>
     </form>
     <div class="contact-links">
-      <a href="https://www.linkedin.com/in/tariklaanaya/" target="_blank">LinkedIn</a>
-      <a href="https://tarik-laanaya.itch.io/" target="_blank">itch.io</a>
+      <a href="https://www.linkedin.com/in/tariklaanaya/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="https://tarik-laanaya.itch.io/" target="_blank" rel="noopener noreferrer">itch.io</a>
     </div>
   </div>
 </section>
