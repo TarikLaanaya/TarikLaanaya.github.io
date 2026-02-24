@@ -191,12 +191,13 @@ section h2 {
   opacity: 1;
 }
 
-.project-details img {
+.project-details video {
   width: 100%;
-  height: 300px;
+  height: 320px;
   object-fit: cover;
   border-radius: 12px;
   margin-bottom: 1rem;
+  background: #000;
 }
 
 /* ---------------- ABOUT ---------------- */
@@ -300,6 +301,9 @@ section h2 {
     font-size: 1rem;
     line-height: 1.7;
   }
+  .project-details video {
+    height: 220px;
+  }
   .contact-card {
     padding: 1.4rem;
   }
@@ -352,7 +356,8 @@ footer {
     <div class="project-card"
       data-title="SYSTEMS PROTOTYPE 01"
       data-details="Placeholder project focused on rapid gameplay scripting in Unity. Current focus: movement architecture, reusable input handling, and modular component setup for fast iteration. More implementation notes and profiling data to be added soon."
-      data-img="IcarusRising.png">
+      data-img="IcarusRising.png"
+      data-video="IcarusRisingGameplay.mp4">
       <img src="IcarusRising.png" alt="Placeholder project screenshot">
       <div class="project-content">
         <h3>SYSTEMS PROTOTYPE 01</h3>
@@ -362,7 +367,7 @@ footer {
       </div>
     </div>
 
-    <div class="project-card" data-title="Learn To Fly: Icarus Rising" data-details="Programming-led Unity project with emphasis on C# gameplay architecture. Includes a custom glide physics implementation, player progression saved through PlayerPrefs, and a data-driven upgrade/shop loop. Built solo with a focus on clean gameplay scripting and iteration speed." data-img="IcarusRising.png">
+    <div class="project-card" data-title="Learn To Fly: Icarus Rising" data-details="Programming-led Unity project with emphasis on C# gameplay architecture. Includes a custom glide physics implementation, player progression saved through PlayerPrefs, and a data-driven upgrade/shop loop. Built solo with a focus on clean gameplay scripting and iteration speed." data-img="IcarusRising.png" data-video="IcarusRisingGameplay.mp4">
       <img src="IcarusRising.png" alt="Learn To Fly Icarus Rising gameplay screenshot">
       <div class="project-content">
         <h3>Learn To Fly: Icarus Rising</h3>
@@ -372,7 +377,7 @@ footer {
       </div>
     </div>
 
-    <div class="project-card" data-title="AI SANDBOX (PLACEHOLDER)" data-details="Placeholder project for AI behavior experimentation. Planned technical focus: finite state machine setup, utility scoring, and debugging tools for behavior visualization. Content and final media coming soon." data-img="IcarusRising.png">
+    <div class="project-card" data-title="AI SANDBOX (PLACEHOLDER)" data-details="Placeholder project for AI behavior experimentation. Planned technical focus: finite state machine setup, utility scoring, and debugging tools for behavior visualization. Content and final media coming soon." data-img="IcarusRising.png" data-video="IcarusRisingGameplay.mp4">
       <img src="IcarusRising.png" alt="AI sandbox placeholder screenshot">
       <div class="project-content">
         <h3>AI SANDBOX (PLACEHOLDER)</h3>
@@ -385,7 +390,7 @@ footer {
 
   <div class="project-details" id="project-details">
     <div class="project-details-inner">
-      <img id="details-img">
+      <video id="details-video" controls muted loop playsinline></video>
       <h3 id="details-title"></h3>
       <p id="details-text"></p>
     </div>
@@ -442,7 +447,7 @@ revealSections.forEach(sec => observer.observe(sec));
 const cards = document.querySelectorAll('.project-card');
 const details = document.getElementById('project-details');
 const inner = details.querySelector('.project-details-inner');
-const img = document.getElementById('details-img');
+const video = document.getElementById('details-video');
 const title = document.getElementById('details-title');
 const text = document.getElementById('details-text');
 
@@ -454,6 +459,7 @@ cards.forEach(card => {
 
     if (details.classList.contains('open') && sameCard) {
       details.classList.remove('open', 'show');
+      video.pause();
       activeTitle = null;
       return;
     }
@@ -466,7 +472,10 @@ cards.forEach(card => {
     }
 
     setTimeout(() => {
-      img.src = card.dataset.img;
+      video.src = card.dataset.video || "IcarusRisingGameplay.mp4";
+      video.load();
+      const playPromise = video.play();
+      if (playPromise) playPromise.catch(() => {});
       title.textContent = card.dataset.title;
       text.textContent = card.dataset.details;
       inner.style.opacity = 1;
