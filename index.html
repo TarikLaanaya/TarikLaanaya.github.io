@@ -156,15 +156,20 @@ section h2 {
 .projects-grid::-webkit-scrollbar { height: 8px; }
 .projects-grid::-webkit-scrollbar-thumb { background: rgba(102,204,255,0.35); border-radius: 10px; }
 .carousel-btn {
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border-radius: 999px;
   border: 1px solid rgba(102,204,255,0.45);
   color: #9bddff;
   background: #10161a;
   cursor: pointer;
-  font-size: 1.2rem;
+  font-size: 1.05rem;
+  font-weight: 700;
   line-height: 1;
+  display: grid;
+  place-items: center;
+  flex: 0 0 40px;
 }
 .carousel-btn:hover { background: #162028; }
 .project-card {
@@ -373,9 +378,10 @@ section h2 {
     gap: 0.35rem;
   }
   .carousel-btn {
-    width: 34px;
-    height: 34px;
-    font-size: 1rem;
+    width: 32px;
+    height: 32px;
+    flex-basis: 32px;
+    font-size: 0.92rem;
   }
   .projects-grid {
     gap: 1rem;
@@ -498,20 +504,20 @@ footer {
       </div>
 
       <div class="project-card"
-        data-title="SNOW SHADER (PLACEHOLDER)"
-        data-details="Shader-focused placeholder project covering stylized snow rendering experiments in Unity. Planned highlights: vertex displacement, layered noise blending, and performance-conscious shader graph/HLSL iteration."
+        data-title="Snow Shader"
+        data-details="Real-time stylized snow shader project focused on readability and performance in Unity. The shader combines layered procedural noise, controlled vertex displacement, and artist-friendly parameter controls to support rapid look-dev while keeping frame cost predictable."
         data-img="IcarusRising.png"
         data-video="IcarusRisingGameplay.mp4"
         data-role="Graphics Programmer"
         data-tech="Unity Shader Graph, HLSL"
         data-focus="Stylized Snow Rendering"
-        data-outcome="Prototype shader pass prepared for environment integration"
+        data-outcome="Integrated stylized snow shader ready for environment production iteration"
       >
-        <img src="IcarusRising.png" alt="Snow shader placeholder screenshot">
+        <img src="IcarusRising.png" alt="Snow Shader project screenshot">
         <div class="project-content">
-          <h3>SNOW SHADER (PLACEHOLDER)</h3>
+          <h3>Snow Shader</h3>
           <div class="project-meta">Role: Graphics Programmer • Tools: Unity Shader Graph, HLSL</div>
-          <p>Placeholder: real-time snow look-dev and shader optimization pass.</p>
+          <p>Stylized snow rendering with practical controls for look-dev and performance tuning.</p>
           <div class="project-links">
             <a href="https://tarik-laanaya.itch.io/" target="_blank" rel="noopener noreferrer">Itch.io</a>
             <a href="https://github.com/" target="_blank" rel="noopener noreferrer">GitHub</a>
