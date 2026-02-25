@@ -199,6 +199,43 @@ section h2 {
   margin-bottom: 1rem;
   background: #000;
 }
+.details-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+}
+.meta-pill {
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid rgba(102, 204, 255, 0.35);
+  color: #bfe9ff;
+  font-size: 0.82rem;
+  background: rgba(102, 204, 255, 0.08);
+}
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+.details-item {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(102, 204, 255, 0.16);
+  border-radius: 10px;
+  padding: 0.8rem;
+}
+.details-item h4 {
+  margin: 0 0 0.35rem;
+  color: #8ad9ff;
+  font-size: 0.88rem;
+  letter-spacing: 0.02em;
+}
+.details-item p {
+  margin: 0;
+  color: #d7d7d7;
+  font-size: 0.94rem;
+  line-height: 1.45;
+}
 
 /* ---------------- ABOUT ---------------- */
 .about-container {
@@ -304,6 +341,9 @@ section h2 {
   .project-details video {
     height: 220px;
   }
+  .details-grid {
+    grid-template-columns: 1fr;
+  }
   .contact-card {
     padding: 1.4rem;
   }
@@ -328,7 +368,7 @@ footer {
       <a href="#projects">Projects</a>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
-      <a href="CV240206.pdf" class="cv-button" download>Download CV</a>
+      <a href="Tarik_Laanaya_CV.pdf" class="cv-button" download>Download CV</a>
     </nav>
   </div>
 </header>
@@ -357,7 +397,11 @@ footer {
       data-title="SYSTEMS PROTOTYPE 01"
       data-details="Placeholder project focused on rapid gameplay scripting in Unity. Current focus: movement architecture, reusable input handling, and modular component setup for fast iteration. More implementation notes and profiling data to be added soon."
       data-img="IcarusRising.png"
-      data-video="IcarusRisingGameplay.mp4">
+      data-video="IcarusRisingGameplay.mp4"
+      data-role="Gameplay Programmer"
+      data-tech="Unity, C#"
+      data-focus="Input Architecture"
+      data-outcome="Modular systems prepared for fast iteration">
       <img src="IcarusRising.png" alt="Placeholder project screenshot">
       <div class="project-content">
         <h3>SYSTEMS PROTOTYPE 01</h3>
@@ -367,7 +411,7 @@ footer {
       </div>
     </div>
 
-    <div class="project-card" data-title="Learn To Fly: Icarus Rising" data-details="Programming-led Unity project with emphasis on C# gameplay architecture. Includes a custom glide physics implementation, player progression saved through PlayerPrefs, and a data-driven upgrade/shop loop. Built solo with a focus on clean gameplay scripting and iteration speed." data-img="IcarusRising.png" data-video="IcarusRisingGameplay.mp4">
+    <div class="project-card" data-title="Learn To Fly: Icarus Rising" data-details="Programming-led Unity project with emphasis on C# gameplay architecture. Includes a custom glide physics implementation, player progression saved through PlayerPrefs, and a data-driven upgrade/shop loop. Built solo with a focus on clean gameplay scripting and iteration speed." data-img="IcarusRising.png" data-video="IcarusRisingGameplay.mp4" data-role="Solo Programmer" data-tech="Unity, C#" data-focus="Physics + Progression" data-outcome="Playable loop with upgrades and persistence">
       <img src="IcarusRising.png" alt="Learn To Fly Icarus Rising gameplay screenshot">
       <div class="project-content">
         <h3>Learn To Fly: Icarus Rising</h3>
@@ -377,7 +421,7 @@ footer {
       </div>
     </div>
 
-    <div class="project-card" data-title="AI SANDBOX (PLACEHOLDER)" data-details="Placeholder project for AI behavior experimentation. Planned technical focus: finite state machine setup, utility scoring, and debugging tools for behavior visualization. Content and final media coming soon." data-img="IcarusRising.png" data-video="IcarusRisingGameplay.mp4">
+    <div class="project-card" data-title="AI SANDBOX (PLACEHOLDER)" data-details="Placeholder project for AI behavior experimentation. Planned technical focus: finite state machine setup, utility scoring, and debugging tools for behavior visualization. Content and final media coming soon." data-img="IcarusRising.png" data-video="IcarusRisingGameplay.mp4" data-role="Gameplay/AI Programmer" data-tech="Unity, C#" data-focus="AI Behavior" data-outcome="Placeholder for upcoming behavior prototype">
       <img src="IcarusRising.png" alt="AI sandbox placeholder screenshot">
       <div class="project-content">
         <h3>AI SANDBOX (PLACEHOLDER)</h3>
@@ -390,8 +434,27 @@ footer {
 
   <div class="project-details" id="project-details">
     <div class="project-details-inner">
-      <video id="details-video" controls muted loop playsinline></video>
+      <video id="details-video" autoplay muted loop playsinline></video>
       <h3 id="details-title"></h3>
+      <div class="details-meta" id="details-meta"></div>
+      <div class="details-grid">
+        <div class="details-item">
+          <h4>Role</h4>
+          <p id="details-role"></p>
+        </div>
+        <div class="details-item">
+          <h4>Tech Stack</h4>
+          <p id="details-tech"></p>
+        </div>
+        <div class="details-item">
+          <h4>Primary Focus</h4>
+          <p id="details-focus"></p>
+        </div>
+        <div class="details-item">
+          <h4>Outcome</h4>
+          <p id="details-outcome"></p>
+        </div>
+      </div>
       <p id="details-text"></p>
     </div>
   </div>
@@ -450,6 +513,11 @@ const inner = details.querySelector('.project-details-inner');
 const video = document.getElementById('details-video');
 const title = document.getElementById('details-title');
 const text = document.getElementById('details-text');
+const meta = document.getElementById('details-meta');
+const role = document.getElementById('details-role');
+const tech = document.getElementById('details-tech');
+const focus = document.getElementById('details-focus');
+const outcome = document.getElementById('details-outcome');
 
 let activeTitle = null;
 
@@ -477,6 +545,15 @@ cards.forEach(card => {
       const playPromise = video.play();
       if (playPromise) playPromise.catch(() => {});
       title.textContent = card.dataset.title;
+      role.textContent = card.dataset.role || 'Gameplay Programmer';
+      tech.textContent = card.dataset.tech || 'Unity, C#';
+      focus.textContent = card.dataset.focus || 'Gameplay Systems';
+      outcome.textContent = card.dataset.outcome || 'Placeholder project outcome';
+      meta.innerHTML = `
+        <span class="meta-pill">Role-fit: Gameplay Programming</span>
+        <span class="meta-pill">Discipline: Systems</span>
+        <span class="meta-pill">Recruiter-ready format</span>
+      `;
       text.textContent = card.dataset.details;
       inner.style.opacity = 1;
       activeTitle = card.dataset.title;
