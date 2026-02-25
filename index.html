@@ -138,14 +138,38 @@ section h2 {
 }
 
 /* ---------------- PROJECTS ---------------- */
+.projects-carousel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+}
 .projects-grid {
   display: flex;
   gap: 2rem;
   overflow-x: auto;
-  padding-bottom: 1rem;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  max-width: 980px;
+  padding: 0 0 1rem;
 }
+.projects-grid::-webkit-scrollbar { height: 8px; }
+.projects-grid::-webkit-scrollbar-thumb { background: rgba(102,204,255,0.35); border-radius: 10px; }
+.carousel-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid rgba(102,204,255,0.45);
+  color: #9bddff;
+  background: #10161a;
+  cursor: pointer;
+  font-size: 1.2rem;
+  line-height: 1;
+}
+.carousel-btn:hover { background: #162028; }
 .project-card {
   flex: 0 0 300px;
+  scroll-snap-align: start;
   background: linear-gradient(180deg, #121212, #0c0c0c);
   border-radius: 12px;
   cursor: pointer;
@@ -165,6 +189,7 @@ section h2 {
 .project-content { padding: 1.2rem; }
 .project-meta { font-size: 0.9rem; color: #aaa; margin-bottom: 0.5rem; }
 .project-links a { color: #66ccff; text-decoration: none; font-weight: bold; margin-right: 1rem; }
+.project-links { display: flex; gap: 0.9rem; flex-wrap: wrap; }
 
 /* ---------------- PROJECT DETAILS (CROSSFADE) ---------------- */
 .project-details {
@@ -344,6 +369,17 @@ section h2 {
   .details-grid {
     grid-template-columns: 1fr;
   }
+  .projects-carousel {
+    gap: 0.35rem;
+  }
+  .carousel-btn {
+    width: 34px;
+    height: 34px;
+    font-size: 1rem;
+  }
+  .projects-grid {
+    gap: 1rem;
+  }
   .contact-card {
     padding: 1.4rem;
   }
@@ -392,52 +428,98 @@ footer {
 <section id="projects" class="reveal">
   <h2>Programming Projects</h2>
 
-  <div class="projects-grid">
-    <div class="project-card"
-      data-title="Snow Shader"
-      data-details="This game showcases a snow shader I created in 2022. It was my first time coding a shader and I learned a lot about geometry shaders and vertex/pixel shaders. The three shaders I created for this project are:
+  <div class="projects-carousel">
+    <button class="carousel-btn" id="projects-prev" aria-label="Previous projects">‹</button>
+    <div class="projects-grid" id="projects-grid">
+      <div class="project-card"
+        data-title="Learn To Fly: Icarus Rising"
+        data-details="Built as a solo Unity/C# project to demonstrate ownership across gameplay programming, progression systems, and iteration loops. Recruiter-focused highlights: custom glide physics tuning, data-driven upgrade balancing, PlayerPrefs persistence, and a clean gameplay script structure designed for quick testing and feature expansion."
+        data-img="IcarusRising.png"
+        data-video="IcarusRisingGameplay.mp4"
+        data-role="Solo Programmer"
+        data-tech="Unity, C#"
+        data-focus="Physics + Progression"
+        data-outcome="Playable loop with upgrades and persistence"
+      >
+        <img src="IcarusRising.png" alt="Learn To Fly Icarus Rising gameplay screenshot">
+        <div class="project-content">
+          <h3>Learn To Fly: Icarus Rising</h3>
+          <div class="project-meta">Role: Solo Programmer • Tools: Unity, C#</div>
+          <p>Recruiter-ready case study: physics, progression, and maintainable gameplay architecture.</p>
+          <div class="project-links">
+            <a href="https://tarik-laanaya.itch.io/learn-to-fly-icarus-rising" target="_blank" rel="noopener noreferrer">Itch.io</a>
+            <a href="https://github.com/" target="_blank" rel="noopener noreferrer">GitHub</a>
+          </div>
+        </div>
+      </div>
 
-SnowTracks This shader managed the main qualities of the snow such as colour/texture, smoothness and how mettalic it was. It also allowed the plane the shader would be placed on to tesselate. This was very important for deforming the snow mimicking deep tracks under the cars wheels.
-SnowFall This next shader is what created the effect of snow filling up the tracks. It placed dots on in the places that were defromed by the cars wheels until they were completely filled.
-Finally one of the most important shaders, DrawTracks. This shader would draw the coordinates of each wheel to a splatmap. this splatmap consisted of two colour one representing the original colour of the snow, the other a darker colour representing deeper and more compact snow. This shader would draw to the splatmap which the SnowTracks shader would then convert into the texture used on the ground (snow).
-The relevant scripts mostly worked with the shaders providing them with information:
+      <div class="project-card"
+        data-title="SYSTEMS PROTOTYPE 01"
+        data-details="Placeholder project focused on rapid gameplay scripting in Unity. Current focus: movement architecture, reusable input handling, and modular component setup for fast iteration. More implementation notes and profiling data to be added soon."
+        data-img="IcarusRising.png"
+        data-video="IcarusRisingGameplay.mp4"
+        data-role="Gameplay Programmer"
+        data-tech="Unity, C#"
+        data-focus="Input Architecture"
+        data-outcome="Modular systems prepared for fast iteration"
+      >
+        <img src="IcarusRising.png" alt="Placeholder project screenshot">
+        <div class="project-content">
+          <h3>SYSTEMS PROTOTYPE 01</h3>
+          <div class="project-meta">Role: Programmer • Tools: Unity, C#</div>
+          <p>Placeholder: gameplay systems and input architecture.</p>
+          <div class="project-links">
+            <a href="https://tarik-laanaya.itch.io/" target="_blank" rel="noopener noreferrer">Itch.io</a>
+            <a href="https://github.com/" target="_blank" rel="noopener noreferrer">GitHub</a>
+          </div>
+        </div>
+      </div>
 
-The WheelTracks script provided information such as brush size, what object would be tesselated and the wheel game objects location. This information would be used by the shaders to draw to the splat map at the correct locations and the desired brush size which could be altered in the editor in real time.
-SnowNoise is a very simmilar script this time working directly with the SnowFall shader in order to provide the correct information for the desired effect."
-      data-img="SnowShader.png"
-      data-video="IcarusRisingGameplay.mp4"
-      data-role="Shader Programmer"
-      data-tech="Unity, C#"
-      data-focus="Shaders"
-      data-outcome="Dynamic snow shader with real time interaction">
-      <img src="SnowShader.png" alt="Project Screenshot">
-      <div class="project-content">
-        <h3>Snow Shader</h3>
-        <div class="project-meta">Role: Programmer • Tools: Unity, C#</div>
-        <p>Snow shader prototype/playground</p>
-        <div class="project-links"><a href="https://tarik-laanaya.itch.io/snow-shader" target="_blank" rel="noopener noreferrer">Itch.io</a></div>
+      <div class="project-card"
+        data-title="AI SANDBOX (PLACEHOLDER)"
+        data-details="Placeholder project for AI behavior experimentation. Planned technical focus: finite state machine setup, utility scoring, and debugging tools for behavior visualization. Content and final media coming soon."
+        data-img="IcarusRising.png"
+        data-video="IcarusRisingGameplay.mp4"
+        data-role="Gameplay/AI Programmer"
+        data-tech="Unity, C#"
+        data-focus="AI Behavior"
+        data-outcome="Placeholder for upcoming behavior prototype"
+      >
+        <img src="IcarusRising.png" alt="AI sandbox placeholder screenshot">
+        <div class="project-content">
+          <h3>AI SANDBOX (PLACEHOLDER)</h3>
+          <div class="project-meta">Role: Gameplay Programmer • Tools: Unity, C#</div>
+          <p>Placeholder: enemy behavior systems and AI iteration workflow.</p>
+          <div class="project-links">
+            <a href="https://tarik-laanaya.itch.io/" target="_blank" rel="noopener noreferrer">Itch.io</a>
+            <a href="https://github.com/" target="_blank" rel="noopener noreferrer">GitHub</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card"
+        data-title="SNOW SHADER (PLACEHOLDER)"
+        data-details="Shader-focused placeholder project covering stylized snow rendering experiments in Unity. Planned highlights: vertex displacement, layered noise blending, and performance-conscious shader graph/HLSL iteration."
+        data-img="IcarusRising.png"
+        data-video="IcarusRisingGameplay.mp4"
+        data-role="Graphics Programmer"
+        data-tech="Unity Shader Graph, HLSL"
+        data-focus="Stylized Snow Rendering"
+        data-outcome="Prototype shader pass prepared for environment integration"
+      >
+        <img src="IcarusRising.png" alt="Snow shader placeholder screenshot">
+        <div class="project-content">
+          <h3>SNOW SHADER (PLACEHOLDER)</h3>
+          <div class="project-meta">Role: Graphics Programmer • Tools: Unity Shader Graph, HLSL</div>
+          <p>Placeholder: real-time snow look-dev and shader optimization pass.</p>
+          <div class="project-links">
+            <a href="https://tarik-laanaya.itch.io/" target="_blank" rel="noopener noreferrer">Itch.io</a>
+            <a href="https://github.com/" target="_blank" rel="noopener noreferrer">GitHub</a>
+          </div>
+        </div>
       </div>
     </div>
-
-    <div class="project-card" data-title="Learn To Fly: Icarus Rising" data-details="Programming-led Unity project with emphasis on C# gameplay architecture. Includes a custom glide physics implementation, player progression saved through PlayerPrefs, and a data-driven upgrade/shop loop. Built solo with a focus on clean gameplay scripting and iteration speed." data-img="IcarusRising.png" data-video="IcarusRisingGameplay.mp4" data-role="Solo Programmer" data-tech="Unity, C#" data-focus="Physics + Progression" data-outcome="Playable loop with upgrades and persistence">
-      <img src="IcarusRising.png" alt="Learn To Fly Icarus Rising gameplay screenshot">
-      <div class="project-content">
-        <h3>Learn To Fly: Icarus Rising</h3>
-        <div class="project-meta">Role: Programmer • Tools: Unity, C#</div>
-        <p>Code-first recreation of Learn To Fly with a Greek mythology theme.</p>
-        <div class="project-links"><a href="https://tarik-laanaya.itch.io/learn-to-fly-icarus-rising" target="_blank" rel="noopener noreferrer">Itch.io</a></div>
-      </div>
-    </div>
-
-    <div class="project-card" data-title="AI SANDBOX (PLACEHOLDER)" data-details="Placeholder project for AI behavior experimentation. Planned technical focus: finite state machine setup, utility scoring, and debugging tools for behavior visualization. Content and final media coming soon." data-img="IcarusRising.png" data-video="IcarusRisingGameplay.mp4" data-role="Gameplay/AI Programmer" data-tech="Unity, C#" data-focus="AI Behavior" data-outcome="Placeholder for upcoming behavior prototype">
-      <img src="IcarusRising.png" alt="AI sandbox placeholder screenshot">
-      <div class="project-content">
-        <h3>AI SANDBOX (PLACEHOLDER)</h3>
-        <div class="project-meta">Role: Gameplay Programmer • Tools: Unity, C#</div>
-        <p>Placeholder: enemy behavior systems and AI iteration workflow.</p>
-        <div class="project-links"><a href="https://tarik-laanaya.itch.io/" target="_blank" rel="noopener noreferrer">Itch.io</a></div>
-      </div>
-    </div>
+    <button class="carousel-btn" id="projects-next" aria-label="Next projects">›</button>
   </div>
 
   <div class="project-details" id="project-details">
@@ -513,6 +595,19 @@ const observer = new IntersectionObserver((entries, obs) => {
 }, { threshold: 0.2 });
 
 revealSections.forEach(sec => observer.observe(sec));
+
+const projectsGrid = document.getElementById('projects-grid');
+const prevBtn = document.getElementById('projects-prev');
+const nextBtn = document.getElementById('projects-next');
+if (projectsGrid && prevBtn && nextBtn) {
+  const scrollAmount = () => {
+    const card = projectsGrid.querySelector('.project-card');
+    if (!card) return 340;
+    return card.getBoundingClientRect().width + 32;
+  };
+  prevBtn.addEventListener('click', () => projectsGrid.scrollBy({ left: -scrollAmount(), behavior: 'smooth' }));
+  nextBtn.addEventListener('click', () => projectsGrid.scrollBy({ left: scrollAmount(), behavior: 'smooth' }));
+}
 
 /* -------- PROJECT DETAILS CROSSFADE -------- */
 const cards = document.querySelectorAll('.project-card');
