@@ -394,20 +394,28 @@ footer {
 
   <div class="projects-grid">
     <div class="project-card"
-      data-title="SYSTEMS PROTOTYPE 01"
-      data-details="Placeholder project focused on rapid gameplay scripting in Unity. Current focus: movement architecture, reusable input handling, and modular component setup for fast iteration. More implementation notes and profiling data to be added soon."
-      data-img="IcarusRising.png"
+      data-title="Snow Shader"
+      data-details="This game showcases a snow shader I created in 2022. It was my first time coding a shader and I learned a lot about geometry shaders and vertex/pixel shaders. The three shaders I created for this project are:
+
+SnowTracks This shader managed the main qualities of the snow such as colour/texture, smoothness and how mettalic it was. It also allowed the plane the shader would be placed on to tesselate. This was very important for deforming the snow mimicking deep tracks under the cars wheels.
+SnowFall This next shader is what created the effect of snow filling up the tracks. It placed dots on in the places that were defromed by the cars wheels until they were completely filled.
+Finally one of the most important shaders, DrawTracks. This shader would draw the coordinates of each wheel to a splatmap. this splatmap consisted of two colour one representing the original colour of the snow, the other a darker colour representing deeper and more compact snow. This shader would draw to the splatmap which the SnowTracks shader would then convert into the texture used on the ground (snow).
+The relevant scripts mostly worked with the shaders providing them with information:
+
+The WheelTracks script provided information such as brush size, what object would be tesselated and the wheel game objects location. This information would be used by the shaders to draw to the splat map at the correct locations and the desired brush size which could be altered in the editor in real time.
+SnowNoise is a very simmilar script this time working directly with the SnowFall shader in order to provide the correct information for the desired effect."
+      data-img="SnowShader.png"
       data-video="IcarusRisingGameplay.mp4"
-      data-role="Gameplay Programmer"
+      data-role="Shader Programmer"
       data-tech="Unity, C#"
-      data-focus="Input Architecture"
-      data-outcome="Modular systems prepared for fast iteration">
-      <img src="IcarusRising.png" alt="Placeholder project screenshot">
+      data-focus="Shaders"
+      data-outcome="Dynamic snow shader with real time interaction">
+      <img src="SnowShader.png" alt="Project Screenshot">
       <div class="project-content">
-        <h3>SYSTEMS PROTOTYPE 01</h3>
+        <h3>Snow Shader</h3>
         <div class="project-meta">Role: Programmer • Tools: Unity, C#</div>
-        <p>Placeholder: gameplay systems and input architecture.</p>
-        <div class="project-links"><a href="https://tarik-laanaya.itch.io/learn-to-fly-icarus-rising" target="_blank" rel="noopener noreferrer">Itch.io</a></div>
+        <p>Snow shader prototype/playground</p>
+        <div class="project-links"><a href="https://tarik-laanaya.itch.io/snow-shader" target="_blank" rel="noopener noreferrer">Itch.io</a></div>
       </div>
     </div>
 
