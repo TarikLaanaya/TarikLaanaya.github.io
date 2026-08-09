@@ -217,8 +217,15 @@ section h2 {
 }
 
 .project-details.open {
-  max-height: 800px;
+  max-height: min(800px, 80vh);
   padding: 1.5rem;
+  overflow-y: auto;
+}
+
+.project-details.open::-webkit-scrollbar { width: 8px; }
+.project-details.open::-webkit-scrollbar-thumb {
+  background: rgba(102,204,255,0.35);
+  border-radius: 10px;
 }
 
 .project-details-inner {
