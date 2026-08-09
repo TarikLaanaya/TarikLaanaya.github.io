@@ -479,15 +479,15 @@ footer {
       <div class="project-card"
         data-title="Trout Zombies: Online"
         data-details="Through Trout Zombies I demonstrated one of my game development passions: AI. I designed a hierarchy that revolved around a point system to drive the zombie behaviour. It starts with an AI Commander. This script controls the amount of hordes that can appear per level, and responds to help requests, spawning backup hordes where needed and available. Each horde coordinates with the others to provide help and retreat when the player threat is perceived as too high. To allow the hordes to decide the threat level I created a point system relying on many factors such as player count, each players kill count and even wether the player was shooting at that hordes direction. A topic I found really interesting to dive into was NAT Hole Punching. When trying to decide how I was going to refactor the original game into a multiplayer one I knew I had many options. But I wanted to provide an accesible and true online multiplayer experience. This meant possibly using Steams API or other third party options but I did not want to rely on those (especially considering I have used Steam to create multiplayer games in Unreal) So I decided a custom peer to peer option was best. That happened to be a great decision because I learnt a lot about networking and methods to create connections between clients. By using a server I hosted, each client would send a message to said server. By doing so a 'hole' is created allowing a message to go back through. Each client does this exchanging eachothers IP + port through the server, and then sending direct messages to eachother in attempt to fit into one of those holes (this usually means sending a burst of messages to eachother)."
-        data-img="IcarusRising.png"
-        data-video="IcarusRisingGameplay.mp4"
+        data-img="TroutZombiesIcon.png"
+        data-video="TroutZombiesOnlineGameplay.mp4"
         data-role="Gameplay/AI + Network Programmer"
         data-tech="SFML, C++"
         data-focus="AI/Networking"
         data-outcome="Adaptive AI behaviour and seamless online multiplayer"
         data-pills="NAT Hole Punching|AI Decision Making|Debug Tooling"
       >
-        <img src="IcarusRising.png" alt="Placeholder project screenshot">
+        <img src="TroutZombiesIcon.png" alt="Trout Zombies icon">
         <div class="project-content">
           <h3>Trout Zombies: Online</h3>
           <div class="project-meta">Role: Gameplay Programmer • Network Programmer • Tools: SFML, C++</div>
