@@ -384,9 +384,6 @@ section h2 {
     font-size: 1rem;
     line-height: 1.7;
   }
-  .project-details.open {
-    max-height: 75vh;
-  }
   .project-details video {
     height: 220px;
   }
@@ -429,7 +426,7 @@ footer {
       <a href="#projects">Projects</a>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
-      <a href="Tarik_Laanaya_CV.pdf" class="cv-button" download>Download CV</a>
+      <a href="CV240206.pdf" class="cv-button" download>Download CV</a>
     </nav>
   </div>
 </header>
@@ -458,7 +455,7 @@ footer {
     <div class="projects-grid" id="projects-grid">
       <div class="project-card"
         data-title="Learn To Fly: Icarus Rising"
-        data-details="Built as a solo Unity/C# project to demonstrate ownership across gameplay programming, progression systems, and iteration loops. Recruiter-focused highlights: custom glide physics tuning, data-driven upgrade balancing, PlayerPrefs persistence, and a clean gameplay script structure designed for quick testing and feature expansion."
+        data-details="Built as a solo Unity/C# project to demonstrate ownership across gameplay programming, progression systems, and iteration loops. Includes custom glide physics tuning, data-driven upgrade balancing, PlayerPrefs persistence, and a clean gameplay script structure designed for quick testing and feature expansion."
         data-img="IcarusRising.png"
         data-video="IcarusRisingGameplay.mp4"
         data-role="Solo Programmer"
@@ -474,53 +471,52 @@ footer {
           <p>Recruiter-ready case study: physics, progression, and maintainable gameplay architecture.</p>
           <div class="project-links">
             <a href="https://tarik-laanaya.itch.io/learn-to-fly-icarus-rising" target="_blank" rel="noopener noreferrer">Itch.io</a>
-            <a href="https://github.com/" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="https://github.com/TarikLaanaya/Learn-to-Fly-Icarus-Rising" target="_blank" rel="noopener noreferrer">GitHub</a>
           </div>
         </div>
       </div>
 
       <div class="project-card"
-        data-title="SYSTEMS PROTOTYPE 01"
-        data-details="Placeholder project focused on rapid gameplay scripting in Unity. Current focus: movement architecture, reusable input handling, and modular component setup for fast iteration. More implementation notes and profiling data to be added soon."
+        data-title="Trout Zombies: Online"
+        data-details="Through Trout Zombies I demonstrated one of my game development passions: AI. I designed a hierarchy that revolved around a point system to drive the zombie behaviour. It starts with an AI Commander. This script controls the amount of hordes that can appear per level, and responds to help requests, spawning backup hordes where needed and available. Each horde coordinates with the others to provide help and retreat when the player threat is perceived as too high. To allow the hordes to decide the threat level I created a point system relying on many factors such as player count, each players kill count and even wether the player was shooting at that hordes direction. A topic I found really interesting to dive into was NAT Hole Punching. When trying to decide how I was going to refactor the original game into a multiplayer one I knew I had many options. But I wanted to provide an accesible and true online multiplayer experience. This meant possibly using Steams API or other third party options but I did not want to rely on those (especially considering I have used Steam to create multiplayer games in Unreal) So I decided a custom peer to peer option was best. That happened to be a great decision because I learnt a lot about networking and methods to create connections between clients. By using a server I hosted, each client would send a message to said server. By doing so a 'hole' is created allowing a message to go back through. Each client does this exchanging eachothers IP + port through the server, and then sending direct messages to eachother in attempt to fit into one of those holes (this usually means sending a burst of messages to eachother)."
         data-img="IcarusRising.png"
         data-video="IcarusRisingGameplay.mp4"
-        data-role="Gameplay Programmer"
-        data-tech="Unity, C#"
-        data-focus="Input Architecture"
-        data-outcome="Modular systems prepared for fast iteration"
-        data-pills="Gameplay Architecture|Input Framework|Scalable Components"
+        data-role="Gameplay/AI + Network Programmer"
+        data-tech="SFML, C++"
+        data-focus="AI/Networking"
+        data-outcome="Adaptive AI behaviour and seamless online multiplayer"
+        data-pills="NAT Hole Punching|AI Decision Making|Debug Tooling"
       >
         <img src="IcarusRising.png" alt="Placeholder project screenshot">
         <div class="project-content">
-          <h3>SYSTEMS PROTOTYPE 01</h3>
-          <div class="project-meta">Role: Programmer • Tools: Unity, C#</div>
-          <p>Placeholder: gameplay systems and input architecture.</p>
+          <h3>Trout Zombies: Online</h3>
+          <div class="project-meta">Role: Gameplay Programmer • Network Programmer • Tools: SFML, C++</div>
+          <p>Top down multiplayer game similar to call of duty zombies. Technical focus on AI behaviour and online multiplayer via NAT Hole Punching.</p>
           <div class="project-links">
-            <a href="https://tarik-laanaya.itch.io/" target="_blank" rel="noopener noreferrer">Itch.io</a>
             <a href="https://github.com/" target="_blank" rel="noopener noreferrer">GitHub</a>
           </div>
         </div>
       </div>
 
       <div class="project-card"
-        data-title="AI SANDBOX (PLACEHOLDER)"
-        data-details="Placeholder project for AI behavior experimentation. Planned technical focus: finite state machine setup, utility scoring, and debugging tools for behavior visualization. Content and final media coming soon."
-        data-img="IcarusRising.png"
-        data-video="IcarusRisingGameplay.mp4"
-        data-role="Gameplay/AI Programmer"
+        data-title="Planetoid"
+        data-details="Enemies can become engaged and disengaged with the player depending on distance and threat level replicating defensive behaviour. Player ship revolves around a planet maintaining the same orbit creating an interesting environment with huge potential"
+        data-img="PlanetoidIcon.png"
+        data-video="PlanetoidGameplay.mp4"
+        data-role="Gameplay/AI + Physics"
         data-tech="Unity, C#"
-        data-focus="AI Behavior"
-        data-outcome="Placeholder for upcoming behavior prototype"
-        data-pills="FSM Behaviors|AI Decision Making|Debug Tooling"
+        data-focus="AI + Custom Physics"
+        data-outcome="Simple AI behaviour and space inspired physics"
+        data-pills="Physics|AI Decision Making"
       >
-        <img src="IcarusRising.png" alt="AI sandbox placeholder screenshot">
+        <img src="PlanetoidIcon.png" alt="Planetoid Gameplay">
         <div class="project-content">
-          <h3>AI SANDBOX (PLACEHOLDER)</h3>
-          <div class="project-meta">Role: Gameplay Programmer • Tools: Unity, C#</div>
-          <p>Placeholder: enemy behavior systems and AI iteration workflow.</p>
+          <h3>Planetoid</h3>
+          <div class="project-meta">Role: Gameplay & Physics Programmer • Tools: Unity, C#</div>
+          <p>3rd Person space shooter with Far Cry inspired, liberate enemy base gameplay.</p>
           <div class="project-links">
-            <a href="https://tarik-laanaya.itch.io/" target="_blank" rel="noopener noreferrer">Itch.io</a>
-            <a href="https://github.com/" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="https://tarik-laanaya.itch.io/planetoid" target="_blank" rel="noopener noreferrer">Itch.io</a>
+            <a href="https://github.com/TarikLaanaya/Planetoid" target="_blank" rel="noopener noreferrer">GitHub</a>
           </div>
         </div>
       </div>
@@ -528,22 +524,22 @@ footer {
       <div class="project-card"
         data-title="Snow Shader"
         data-details="Real-time stylized snow shader project focused on readability and performance in Unity. The shader combines layered procedural noise, controlled vertex displacement, and artist-friendly parameter controls to support rapid look-dev while keeping frame cost predictable."
-        data-img="IcarusRising.png"
-        data-video="IcarusRisingGameplay.mp4"
+        data-img="SnowShader.png"
+        data-video="SnowShader.mp4"
         data-role="Graphics Programmer"
         data-tech="Unity Shader Graph, HLSL"
         data-focus="Stylized Snow Rendering"
         data-outcome="Integrated stylized snow shader ready for environment production iteration"
         data-pills="Shader Graph + HLSL|Stylized Rendering|Performance Budgeting"
       >
-        <img src="IcarusRising.png" alt="Snow Shader project screenshot">
+        <img src="SnowShader.png" alt="Snow Shader project screenshot">
         <div class="project-content">
           <h3>Snow Shader</h3>
           <div class="project-meta">Role: Graphics Programmer • Tools: Unity Shader Graph, HLSL</div>
           <p>Stylized snow rendering with practical controls for look-dev and performance tuning.</p>
           <div class="project-links">
-            <a href="https://tarik-laanaya.itch.io/" target="_blank" rel="noopener noreferrer">Itch.io</a>
-            <a href="https://github.com/" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="https://tarik-laanaya.itch.io/snow-shader" target="_blank" rel="noopener noreferrer">Itch.io</a>
+            <a href="https://github.com/TarikLaanaya/Snow-Shader-Wheel-Tracks" target="_blank" rel="noopener noreferrer">GitHub</a>
           </div>
         </div>
       </div>
@@ -583,14 +579,14 @@ footer {
   <h2>About Me</h2>
   <div class="about-container">
     <img src="CasualPortrait.jpeg" class="about-photo" alt="Portrait of Tarik Laanaya">
-    <p class="about-copy">I’m Tarik, a gameplay programmer focused on building responsive mechanics, clear system architecture, and reliable Unity tooling. <strong>Placeholder summary recruiters often like:</strong> “Programmer with hands-on Unity/C# experience, strong ownership across prototyping to polish, and a practical approach to debugging, optimization, and collaboration with design teams.” I enjoy turning design goals into maintainable gameplay code and iterating quickly from playtest feedback.</p>
+    <p class="about-copy">I’m Tarik, a gameplay programmer with a passion for creating dynamic and fun gameplay systems. One of my favourite sectors of programming would have to be AI, after seeing games of the likes of <strong>Alien: Isolation</strong> and <strong>F.E.A.R.</strong> I quickly discovered for myself how intriguing complex AI systems can be. I have extensive experience with a variety of game engines including: <strong>Unity, Unreal Engine, GameMaker</strong> and recently the <strong>SFML framework</strong>. I feel confident writing in <strong>C++</strong> and <strong>C#</strong>, creating various game mechanics and modular systems with each.</p>
   </div>
 </section>
 
 <section id="contact" class="reveal">
   <h2>Contact Me</h2>
   <div class="contact-card">
-    <p class="contact-intro">Let’s talk gameplay programming, Unity systems, and technical collaboration.</p>
+    <p class="contact-intro">Let’s talk gameplay programming, Unity/Unreal systems, and technical collaboration.</p>
     <form id="contact-form" action="https://formspree.io/f/mojjgbgp" method="POST">
       <input type="text" name="_gotcha" style="display:none">
       <label>Name<input type="text" name="name" required></label>
